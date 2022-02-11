@@ -2,7 +2,8 @@ $(document).ready(onReady);
 
 function onReady() {
     $('#submitBtn').on('click', taskSubmit);
-    $('#tableBody').on('click', '.deleteBtn', deleteTask)
+    $('#tableBody').on('click', '.deleteBtn', deleteTask);
+    $('#tableBody').on('click', '.completeBtn', markComplete)
     getTasks();
 }
 
@@ -39,13 +40,11 @@ function taskSubmit() {
         newTask.task = $('#taskIn').val(),
         newTask.notes = $('#notesIn').val(),
         newTask.priority = $('#prioritySel').val();
-        console.log(newTask);
         addTask(newTask);
         // $('.inputs').val('');
 }
 
 function addTask(taskIn) {
-    console.log(taskIn);
     $.ajax({
         method: 'POST',
         url: '/tasks',
@@ -60,14 +59,30 @@ function addTask(taskIn) {
 
 function deleteTask() {
     if (confirm('Confirm Delete')) {
-    let taskId = $(this).data().id;
-    $.ajax({
-        type: 'DELETE',
-        url: `/tasks/${taskId}`
-    }).then(response => {
-        getTasks();
-    }).catch(error => {
+        let taskId = $(this).data().id;
+        $.ajax({
+            type: 'DELETE',
+            url: `/tasks/${taskId}`
+        }).then(response => {
+            getTasks();
+        }).catch(error => {
         console.log('Unable to delete task');
     })  
 }
+}
+
+function markComplete() {
+    let taskId = $(this).data().id;
+    console.log(taskId);
+    $.ajax({
+        method: 'PUT',
+        url: `/tasks/${taskId}`
+    }).then(response => {
+        // css change
+        // function to do something for archived list
+    }).catch(error => {
+        console.log('Failed to mark as complete');
+
+    })
+    
 }
