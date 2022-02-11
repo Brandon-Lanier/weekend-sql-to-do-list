@@ -1,7 +1,8 @@
 $(document).ready(onReady);
 
 function onReady() {
-    $('#submitBtn').on('click', taskSubmit)
+    $('#submitBtn').on('click', taskSubmit);
+    $('#tableBody').on('click', '.deleteBtn', deleteTask)
     getTasks();
 }
 
@@ -57,4 +58,16 @@ function addTask(taskIn) {
     })
 }
 
-function
+function deleteTask() {
+    if (confirm('Confirm Delete')) {
+    let taskId = $(this).data().id;
+    $.ajax({
+        type: 'DELETE',
+        url: `/tasks/${taskId}`
+    }).then(response => {
+        getTasks();
+    }).catch(error => {
+        console.log('Unable to delete task');
+    })  
+}
+}
