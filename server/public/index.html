@@ -7,9 +7,42 @@
     <link rel="stylesheet" href="styles/style.css">
     <script src="vendors/jquery.js" charset="UTF-8"></script>
     <script src="scripts/client.js" charset="UTF-8"></script>
-    <title>Document</title>
+    <title>Get It Done!</title>
 </head>
 <body>
-    
+    <div id="wrapper">
+        <header>
+            Get It Done App!
+        </header>
+        <main>
+            <div id="inputContainer">
+                <input type="text" id="taskIn" class="inputs" placeholder="Task To Add">
+                <input type="text" id="descriptionIn" class="inputs" placeholder="Description">
+                <select name="priority" id="prioritySel">
+                    <option value="" selected disabled hidden>Priority</option>
+                    <option value="1">Highest</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Lowest</option>
+                </select>
+                <button id="submitBtn">Add Task</button>
+            </div>
+            <section id="outputs">
+                <table id="todoTable">
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Description</th>
+                            <th>Priority</th>
+                            <th>Completed</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
