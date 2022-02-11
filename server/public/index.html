@@ -17,12 +17,12 @@
         <main>
             <div id="inputContainer">
                 <input type="text" id="taskIn" class="inputs" placeholder="Task To Add">
-                <input type="text" id="descriptionIn" class="inputs" placeholder="Description">
-                <select name="priority" id="prioritySel">
+                <input type="text" id="notesIn" class="inputs" placeholder="Notes">
+                <select name="priority" id="prioritySel" class="inputs">
                     <option value="" selected disabled hidden>Priority</option>
-                    <option value="1">Highest</option>
-                    <option value="2">Medium</option>
-                    <option value="3">Lowest</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Lowest</option>
                 </select>
                 <button id="submitBtn">Add Task</button>
             </div>
@@ -38,7 +38,7 @@
                         </tr>
                     </thead>
                     <tbody id="tableBody">
-                        
+
                     </tbody>
                 </table>
             </section>
