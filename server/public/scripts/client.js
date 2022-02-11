@@ -2,8 +2,8 @@ $(document).ready(onReady);
 
 function onReady() {
     $('#submitBtn').on('click', taskSubmit);
-    $('#tableBody').on('click', '.deleteBtn', deleteTask);
-    $('#tableBody').on('click', '.completeBtn', markComplete)
+    $('#taskContainer').on('click', '.deleteBtn', deleteTask);
+    $('#taskContainer').on('click', '.completeBtn', markComplete);
     getTasks();
 }
 
@@ -21,17 +21,37 @@ function getTasks() {
 }
 
 function renderTasks(res) {
-    $('#tableBody').empty();
+    $('.priorityDiv').empty();
+    console.log(res);
     for (let task of res) {
-        $('#tableBody').append(`
-            <tr data-id=${task.id}>
-                <td>${task.task}</td>
-                <td>${task.notes}</td>
-                <td>${task.priority}</td>
+        if (task.priority === 'High') {
+        $('#highPriorityDiv').append(`
+            <div class="highTask" data-id=${task.id}>
+                <h3>${task.task}</h3>
+                <p>${task.notes}<p>
+                <p>${task.priority}</p>
                 <td><span class="completed"></span><button class="completeBtn" data-id=${task.id}>Mark Completed</button></td>
-                <td><button class="deleteBtn" data-id=${task.id}>Delete</button>
-            </tr>
-        `);
+                <button class="deleteBtn" data-id=${task.id}>Delete</button>
+            </div>`);
+    } else if (task.priority === 'Medium') {
+        $('#mediumPriorityDiv').append(`
+            <div class="mediumTask" data-id=${task.id}>
+                <h3>${task.task}</h3>
+                <p>${task.notes}<p>
+                <p>${task.priority}</p>
+                <span class="completed"></span><button class="completeBtn" data-id=${task.id}>Mark Completed</button>
+                <button class="deleteBtn" data-id=${task.id}>Delete</button>
+            </div>`);
+    } else if (task.priority === 'Low') {
+        $('#lowPriorityDiv').append(`
+            <div class="lowTask" data-id=${task.id}>
+                <h3>${task.task}</h3>
+                <p>${task.notes}<p>
+                <p>${task.priority}</p>
+                <span class="completed"></span><button class="completeBtn" data-id=${task.id}>Mark Completed</button>
+                <button class="deleteBtn" data-id=${task.id}>Delete</button>
+            </div>`);
+        }
     }
 }
 
@@ -78,11 +98,10 @@ function markComplete() {
         method: 'PUT',
         url: `/tasks/${taskId}`
     }).then(response => {
+        
         // css change
         // function to do something for archived list
     }).catch(error => {
         console.log('Failed to mark as complete');
-
-    })
-    
+    });
 }

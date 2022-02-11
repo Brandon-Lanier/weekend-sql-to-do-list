@@ -5,6 +5,30 @@ body, html {
 
 
 
+#taskContainer {
+    display: flex;
+    flex-flow: row wrap;
+}
 
+.priorityDiv {
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+}
 
-.completedRow
+#highPriorityDiv {
+    background-color: rgb(189, 151, 151);
+}
+
+.highTask {
+    border: 1px solid black;
+    position: absolute;
+}
+
+.mediumTask {
+    border: 1px solid black;
+}
+
+.lowTask {
+    border: 1px solid black;
+}
