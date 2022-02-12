@@ -40,7 +40,7 @@ function renderTasks(res) {
             <div class="highTask taskBox" data-id=${task.id}>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
-                <p>Change Priority<button class="changePrio" data-priority="${task.priority}" data-direction="right">-></button></p>
+                <p>Priority<i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}"></i></p>
                 <button class="completeBtn" data-id=${task.id}>Mark Completed</button>
                 <button class="deleteBtn" data-id=${task.id}>Delete Task</button>
             </div>`);
@@ -49,7 +49,7 @@ function renderTasks(res) {
             <div class="mediumTask taskBox" data-id=${task.id}>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
-                <p>${task.priority}</p>
+                <p><i class="fa-solid fa-arrow-left changePrio" data-priority="${task.priority}" data-direction="left"></i> Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}" data-direction="right"></i></p>
                 <button class="completeBtn" data-id=${task.id}> Mark Completed</button>
                 <button class="deleteBtn" data-id=${task.id}>Delete Task</button>
             </div>`);
@@ -58,7 +58,7 @@ function renderTasks(res) {
             <div class="lowTask taskBox" data-id=${task.id}>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
-                <p>${task.priority}</p>
+                <p><i class="fa-solid fa-arrow-left changePrio" data-priority="${task.priority}"></i> Priority</p>
                 <button class="completeBtn" data-id=${task.id}>Mark Completed</button>
                 <button class="deleteBtn" data-id=${task.id}>Delete Task</button>
             </div>`);
@@ -148,6 +148,8 @@ function changePriority() {
     let id = $(this).closest('div').data().id;
     let priority = $(this).data().priority;
     let direction = $(this).data().direction;
+    console.log(id, priority, direction);
+    
    $.ajax({
        method: 'PUT',
        url: `/tasks/priority/${id}`,
