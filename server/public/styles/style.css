@@ -1,12 +1,23 @@
 body, html {
     margin: 0;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
+#topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    background-color: #E7E8D1;
+    margin: 0;
+    padding: 0 20px 0 20px;
+}
 
 #taskContainer {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 #inputContainer {
@@ -17,9 +28,9 @@ body, html {
 
 header {
     text-align: center;
-    background-color:rgb(252, 165, 89);
+    background-color:#A7BEAE;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 0;
 }
 
 .priorityDiv {
@@ -30,6 +41,7 @@ header {
     align-self: baseline;
     flex-grow: 0;
     box-shadow: 0 0 5px rgb(198, 198, 198);
+    background-color: rgb(237, 236, 220);
 }
 
 .priorityDiv h2 {
@@ -40,23 +52,25 @@ header {
 .taskBox {
     margin: 10px;
     padding: 5px;
-    border: 1px solid black;
+    border: 1px solid rgba(109, 109, 109, 0.413);
     border-radius: 15px;
-    box-shadow: 0 5px 5px black;
-    line-height: 0%;
+    box-shadow: 0 3px 5px rgb(109, 109, 109);
 }
 
-.priorityDiv {
-    background-color: antiquewhite;
+.taskBox:hover {
+    box-shadow: 0 5px 10px rgb(109, 109, 109);
 }
-
-/* #highPriorityDiv {
-    background-color: azure;
-    background-color: #FFA351FF;
-} */
 
 .highTask {
-    background-color: rgb(169, 169, 222);
+    background-color: #B85042;
+}
+
+.mediumTask {
+    background-color: #A7BEAE;
+}
+
+.lowTask {
+    background-color: #E7E8D1;
 }
 
 /* #mediumPriorityDiv {
@@ -68,8 +82,35 @@ header {
 } */
 
 #completedSection {
+    display: flex;
+    flex-flow: row-wrap;
     border: 2px solid black;
     padding: 10px;
     margin: 10px;
 }
+
+.completedTask {
+    
+}
+
+#completedTasks {
+    text-align: center;
+}
+
+.taskBox h3, p {
+    margin: 5px;
+}
+
+.fa-xmark {
+    float: right;
+    display: inline-block;
+    margin: 3px;
+    color:rgba(82, 82, 82, 0.509);
+}
+
+.fa-xmark:hover {
+    cursor: pointer;
+}
+
+
 
