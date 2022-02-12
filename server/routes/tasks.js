@@ -70,6 +70,7 @@ router.put('/priority/:id', (req, res) => {
     let id = req.params.id;
     let currentPriority = req.body.priority;
     let direction = req.body.direction;
+    console.log(id, currentPriority, direction);
     if (currentPriority === 'High') {
         sqlTxt = `
         UPDATE "tasks"
@@ -79,19 +80,19 @@ router.put('/priority/:id', (req, res) => {
     } else if (currentPriority === 'Low') {
         sqlTxt = `
         UPDATE "tasks"
-        SET "priority" = "Medium"
+        SET "priority" = 'Medium'
         WHERE "id" = $1;
         `
     }else if (currentPriority === 'Medium' && direction === 'right') {
         sqlTxt = `
         UPDATE "tasks"
-        SET "priority" = "Low"
+        SET "priority" = 'Low'
         WHERE "id" = $1;
         `
     }else if (currentPriority === "Medium" && direction === 'left') {
-        sqlTx = `
+        sqlTxt = `
         UPDATE "tasks"
-        SET "priority" = "High"
+        SET "priority" = 'High'
         WHERE "id" = $1;
         `
     } else {
