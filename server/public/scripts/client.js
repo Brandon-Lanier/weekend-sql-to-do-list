@@ -1,10 +1,15 @@
 $(document).ready(onReady);
 
+let counter = 0;
+let DateTime = luxon.DateTime;
+
 function onReady() {
     $('#submitBtn').on('click', taskSubmit);
     $('#taskContainer').on('click', '.deleteBtn', deleteTask);
     $('#taskContainer').on('click', '.completeBtn', markComplete);
+    $('#completedSection').on('click', '.deleteBtn', deleteTask)
     getTasks();
+    
 }
 
 function getTasks() {
@@ -21,12 +26,16 @@ function getTasks() {
 }
 
 function renderTasks(res) {
+    counter = res.length;
+    console.log(counter);
     $('.priorityDiv').empty();
+    $('#completedSection').empty();
     console.log(res);
     for (let task of res) {
+    if (task.completed === false) {
         if (task.priority === 'High') {
         $('#highPriorityDiv').append(`
-            <div class="highTask" data-id=${task.id}>
+            <div class="highTask taskCont" data-id=${task.id}>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>${task.priority}</p>
@@ -39,7 +48,7 @@ function renderTasks(res) {
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>${task.priority}</p>
-                <span class="completed"></span><button class="completeBtn" data-id=${task.id}>Mark Completed</button>
+                <button class="completeBtn" data-id=${task.id}> Mark Completed</button>
                 <button class="deleteBtn" data-id=${task.id}>Delete</button>
             </div>`);
     } else if (task.priority === 'Low') {
@@ -52,8 +61,20 @@ function renderTasks(res) {
                 <button class="deleteBtn" data-id=${task.id}>Delete</button>
             </div>`);
         }
-    }
-}
+    } else {
+            $('#completedSection').append(`
+            <div class="completedTask" data-id=${task.id}>
+                <h3>${task.task}</h3>
+                <p>${task.notes}<p>
+                <p>${task.priority}</p>
+                <p>${task.time}</p>
+                <button class="deleteBtn" data-id=${task.id}>Delete</button>
+            </div>`);
+            }
+        }$('#taskCount').append(counter)
+     }
+
+
 
 function taskSubmit() {
     let newTask = {};
@@ -96,11 +117,10 @@ function markComplete() {
     console.log(taskId);
     $.ajax({
         method: 'PUT',
-        url: `/tasks/${taskId}`
+        url: `/tasks/${taskId}`,
+        data: time
     }).then(response => {
-        
-        // css change
-        // function to do something for archived list
+        getTasks()
     }).catch(error => {
         console.log('Failed to mark as complete');
     });

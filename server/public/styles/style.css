@@ -14,15 +14,32 @@ body, html {
     width: 300px;
     margin: 10px;
     padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
 }
 
 #highPriorityDiv {
-    background-color: rgb(189, 151, 151);
+    background-color: #FFA351FF;
+}
+
+#mediumPriorityDiv {
+    background-color: #FFBE7BFF;
+}
+
+#lowPriorityDiv {
+    background-color: #EED971FF;
+}
+
+
+.taskCont {
+    padding: 10px;
+    margin: 0;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px black;
 }
 
 .highTask {
     border: 1px solid black;
-    position: absolute;
 }
 
 .mediumTask {
@@ -31,4 +48,14 @@ body, html {
 
 .lowTask {
     border: 1px solid black;
+}
+
+#completedSection {
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+.completedTask {
+    text-decoration: line-through;
 }

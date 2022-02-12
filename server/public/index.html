@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
     <script src="vendors/jquery.js" charset="UTF-8"></script>
+    <script src="https://kit.fontawesome.com/46128ddc2f.js" crossorigin="anonymous"></script>
+    <script src="vendors/luxon.min.js"></script>
     <script src="scripts/client.js" charset="UTF-8"></script>
     <title>Get It Done!</title>
 </head>
@@ -43,11 +45,19 @@
                 </table>
 
                 <div id="taskContainer">
+                    
                     <div id="highPriorityDiv" class="priorityDiv"><h2>High Priority</h2></div>
-                    <div id="mediumPriorityDiv" class="priorityDiv"><h2>Medium Priority</h2></div>
-                    <div id="lowPriorityDiv" class="priorityDiv"><h2>Low Priority</h2></div>
 
+                    <div id="mediumPriorityDiv" class="priorityDiv"><h2>Medium Priority</h2></div>
+
+                    <div id="lowPriorityDiv" class="priorityDiv"><h2>Low Priority</h2></div>
                 </div>
+            </section>
+            <div>
+                <h3>Tasks Remaining: <span id="taskCount"></span></h3>
+            </div>
+            <section id="completedSection">
+                
             </section>
         </main>
     </div>
