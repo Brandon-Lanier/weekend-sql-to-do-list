@@ -3,11 +3,10 @@ body, html {
 }
 
 
-
-
 #taskContainer {
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-around;
 }
 
 .priorityDiv {
@@ -15,7 +14,16 @@ body, html {
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
-    display: inline-block;
+    align-self: baseline;
+    flex-grow: 0;
+}
+
+.taskBox {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px black;
 }
 
 #highPriorityDiv {
@@ -30,24 +38,17 @@ body, html {
     background-color: #EED971FF;
 }
 
-
-.taskCont {
-    padding: 10px;
-    margin: 0;
-    border-radius: 10px;
-    box-shadow: 0 5px 5px black;
+#highTitle {
+    background-color: rgb(252, 165, 89);
 }
 
-.highTask {
-    border: 1px solid black;
+#mediumTitle {
+    background-color: #FFBE7BFF; 
 }
 
-.mediumTask {
-    border: 1px solid black;
-}
+#lowTitle {
+    background-color: #EED971FF;
 
-.lowTask {
-    border: 1px solid black;
 }
 
 #completedSection {

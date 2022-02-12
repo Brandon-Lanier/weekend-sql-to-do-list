@@ -47,7 +47,7 @@ router.put('/:id', (req, res) => {
     let taskId = req.params.id;
     let time = req.body.time
     console.log(time);
-    let queryText = `UPDATE "tasks" SET "completed" = TRUE, "time" = $1 WHERE "id" = $2;`;
+    let queryText = `UPDATE "tasks" SET "completed" = 'TRUE', "time" = $1 WHERE "id" = $2;`;
     pool.query(queryText, [time, taskId])
     .then(result => {
         res.sendStatus(200);
@@ -57,7 +57,14 @@ router.put('/:id', (req, res) => {
 })
 
 
-
+router.delete('/', (req, res) => {
+    let queryText = `DELETE FROM "tasks" WHERE "completed" = true;`;
+    pool.query(queryText).then(function(response) {
+        res.sendStatus(201);
+    }).catch(function(error){
+        res.sendStatus(500);
+    })
+})
 
 
 module.exports = router;
