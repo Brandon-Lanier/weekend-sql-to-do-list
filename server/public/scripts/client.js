@@ -73,7 +73,7 @@ function renderTasks(res) {
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>${task.priority}</p>
-                <p>Time Completed: ${task.time}</p>
+                <h5>Time Completed: <br>${task.time}</h5>
             </div>`);
             }
         }

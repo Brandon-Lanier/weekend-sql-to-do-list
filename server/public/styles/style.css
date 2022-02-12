@@ -73,24 +73,21 @@ header {
     background-color: #E7E8D1;
 }
 
-/* #mediumPriorityDiv {
-    background-color: #FFBE7BFF;
-}
-
-#lowPriorityDiv {
-    background-color: #EED971FF;
-} */
-
 #completedSection {
     display: flex;
     flex-flow: row-wrap;
-    border: 2px solid black;
+    justify-content: center;
     padding: 10px;
     margin: 10px;
 }
 
 .completedTask {
-    
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid rgba(109, 109, 109, 0.413);
+    border-radius: 15px;
+    box-shadow: 0 3px 5px rgb(109, 109, 109);
+    background-color: #A7BEAE;
 }
 
 #completedTasks {
