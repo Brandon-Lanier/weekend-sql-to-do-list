@@ -8,7 +8,8 @@ function onReady() {
     $('#taskContainer').on('click', '.deleteBtn', deleteTask);
     $('#taskContainer').on('click', '.completeBtn', markComplete);
     $('#completedSection').on('click', '.deleteBtn', deleteTask);
-    $('#deleteComplete').on('click', deleteHistory)
+    $('#deleteComplete').on('click', deleteHistory);
+    $('#taskContainer').on('click', '.changePrio', changePriority)
     getTasks();
     
 }
@@ -28,7 +29,7 @@ function getTasks() {
 
 function renderTasks(res) {
     // $('#taskCount').empty();
-    $('.priorityDiv').empty();
+    $('.taskBox').not('.dontDelete').remove();
     // $('.priorityDiv').empty();
     $('#completedSection').empty();
     console.log(res);
@@ -39,7 +40,7 @@ function renderTasks(res) {
             <div class="highTask taskBox" data-id=${task.id}>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
-                <p>${task.priority}</p>
+                <p>Change Priority<button class="changePrio" data-priority="${task.priority}" data-direction="right">-></button></p>
                 <button class="completeBtn" data-id=${task.id}>Mark Completed</button>
                 <button class="deleteBtn" data-id=${task.id}>Delete Task</button>
             </div>`);
@@ -141,4 +142,22 @@ function deleteHistory() {
     }).catch(error => {
         console.log('Failed to mark as complete');
     })
+}
+
+function changePriority() {
+    let id = $(this).closest('div').data().id;
+    let priority = $(this).data().priority;
+    let direction = $(this).data().direction;
+   $.ajax({
+       method: 'PUT',
+       url: `/tasks/priority/${id}`,
+       data: {
+           priority: priority,
+           direction: direction
+        }
+   }).then(response => {
+       getTasks();
+   }).catch(error => {
+       console.log('Error changing priority', error);   
+   })    
 }

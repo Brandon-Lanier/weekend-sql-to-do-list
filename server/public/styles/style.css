@@ -29,15 +29,23 @@ header {
     border-radius: 10px;
     align-self: baseline;
     flex-grow: 0;
+    box-shadow: 0 0 5px rgb(198, 198, 198);
+}
+
+.priorityDiv h2 {
+    margin: 1px;
+    text-align: center;
 }
 
 .taskBox {
-    margin: 5px;
+    margin: 10px;
     padding: 5px;
     border: 1px solid black;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 5px 5px black;
+    line-height: 0%;
 }
+
 
 #highPriorityDiv {
     background-color: #FFA351FF;
@@ -49,19 +57,6 @@ header {
 
 #lowPriorityDiv {
     background-color: #EED971FF;
-}
-
-#highTitle {
-    background-color: rgb(252, 165, 89);
-}
-
-#mediumTitle {
-    background-color: #FFBE7BFF; 
-}
-
-#lowTitle {
-    background-color: #EED971FF;
-
 }
 
 #completedSection {
