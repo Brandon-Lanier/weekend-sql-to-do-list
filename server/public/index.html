@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
     <script src="vendors/jquery.js" charset="UTF-8"></script>
-    <script src="https://kit.fontawesome.com/46128ddc2f.js" crossorigin="anonymous"></script>
     <script src="vendors/luxon.min.js"></script>
+    <script src="https://kit.fontawesome.com/46128ddc2f.js" crossorigin="anonymous"></script>
     <script src="scripts/client.js" charset="UTF-8"></script>
     <title>Get It Done!</title>
 </head>
 <body>
     <div id="wrapper">
         <header>
-            Get It Done App!
+            <h1>Task Organizer</h1>  
         </header>
         <main>
             <div id="inputContainer">
@@ -27,35 +27,21 @@
                     <option value="Low">Lowest</option>
                 </select>
                 <button id="submitBtn">Add Task</button>
+
             </div>
             <section id="outputs">
-                <table id="todoTable">
-                    <thead>
-                        <tr>
-                            <th>Task</th>
-                            <th>Description</th>
-                            <th>Priority</th>
-                            <th>Completed</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-
-                    </tbody>
-                </table>
-
                 <div id="taskContainer">
-                    
-                    <div id="highPriorityDiv" class="priorityDiv"><h2>High Priority</h2></div>
-
-                    <div id="mediumPriorityDiv" class="priorityDiv"><h2>Medium Priority</h2></div>
-
-                    <div id="lowPriorityDiv" class="priorityDiv"><h2>Low Priority</h2></div>
+                        
+                    <div id="highPriorityDiv" class="priorityDiv"><h2 class="dontDelete">HighPriority</h2></div>
+                    <div id="mediumPriorityDiv" class="priorityDiv"><h2 class="dontDelete">Medium Priority</h2></div>
+                    <div id="lowPriorityDiv" class="priorityDiv"><h2 class="dontDelete">Low Priority</h2></div>
+                  
                 </div>
             </section>
             <div>
                 <h3>Tasks Remaining: <span id="taskCount"></span></h3>
             </div>
+            <h2>Completed</h2>
             <button id="deleteComplete">Delete All Completed</button>
             <section id="completedSection">
                 

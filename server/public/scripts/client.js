@@ -8,7 +8,7 @@ function onReady() {
     $('#taskContainer').on('click', '.deleteBtn', deleteTask);
     $('#taskContainer').on('click', '.completeBtn', markComplete);
     $('#completedSection').on('click', '.deleteBtn', deleteTask);
-    $('#deleteHistoy').on('click', deleteHistory)
+    $('#deleteComplete').on('click', deleteHistory)
     getTasks();
     
 }
@@ -27,39 +27,39 @@ function getTasks() {
 }
 
 function renderTasks(res) {
-    counter = res.length;
-    console.log(counter);
+    // $('#taskCount').empty();
     $('.priorityDiv').empty();
+    // $('.priorityDiv').empty();
     $('#completedSection').empty();
     console.log(res);
     for (let task of res) {
     if (task.completed === false) {
         if (task.priority === 'High') {
         $('#highPriorityDiv').append(`
-            <div class="highTask taskCont" data-id=${task.id}>
+            <div class="highTask taskBox" data-id=${task.id}>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>${task.priority}</p>
-                <td><span class="completed"></span><button class="completeBtn" data-id=${task.id}>Mark Completed</button></td>
-                <button class="deleteBtn" data-id=${task.id}>Delete</button>
+                <button class="completeBtn" data-id=${task.id}>Mark Completed</button>
+                <button class="deleteBtn" data-id=${task.id}>Delete Task</button>
             </div>`);
     } else if (task.priority === 'Medium') {
         $('#mediumPriorityDiv').append(`
-            <div class="mediumTask" data-id=${task.id}>
+            <div class="mediumTask taskBox" data-id=${task.id}>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>${task.priority}</p>
                 <button class="completeBtn" data-id=${task.id}> Mark Completed</button>
-                <button class="deleteBtn" data-id=${task.id}>Delete</button>
+                <button class="deleteBtn" data-id=${task.id}>Delete Task</button>
             </div>`);
     } else if (task.priority === 'Low') {
         $('#lowPriorityDiv').append(`
-            <div class="lowTask" data-id=${task.id}>
+            <div class="lowTask taskBox" data-id=${task.id}>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>${task.priority}</p>
-                <span class="completed"></span><button class="completeBtn" data-id=${task.id}>Mark Completed</button>
-                <button class="deleteBtn" data-id=${task.id}>Delete</button>
+                <button class="completeBtn" data-id=${task.id}>Mark Completed</button>
+                <button class="deleteBtn" data-id=${task.id}>Delete Task</button>
             </div>`);
         }
     } else {
@@ -69,10 +69,13 @@ function renderTasks(res) {
                 <p>${task.notes}<p>
                 <p>${task.priority}</p>
                 <p>Time Completed: ${task.time}</p>
-                <button class="deleteBtn" data-id=${task.id}>Delete</button>
+                <button class="deleteBtn" data-id=${task.id}>Remove Task</button>
             </div>`);
             }
-        }$('#taskCount').append(counter)
+        }
+        counter = $('.taskBox').length;
+        $('#taskCount').empty()
+        $('#taskCount').append(counter)
      }
 
 
@@ -127,4 +130,15 @@ function markComplete() {
     }).catch(error => {
         console.log('Failed to mark as complete');
     });
+}
+
+function deleteHistory() {
+    $.ajax({
+        method: 'DELETE',
+        url: '/tasks'
+    }).then(response => {
+        getTasks();
+    }).catch(error => {
+        console.log('Failed to mark as complete');
+    })
 }
