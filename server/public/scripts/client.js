@@ -1,6 +1,7 @@
 $(document).ready(onReady);
 
 let counter = 0;
+let completedCount = 0;
 let DateTime = luxon.DateTime;
 
 function onReady() {
@@ -13,7 +14,7 @@ function onReady() {
     $('#tabComplete').on('click', displayComplete);
     $('#tabTasks').on('click', displayTasks);
     getTasks();
-    $('#completedTasks').hide();
+    $('#completedCont').hide();
     
 }
 
@@ -54,7 +55,10 @@ function renderTasks(res) {
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p><i class="fa-solid fa-arrow-left changePrio" data-priority="${task.priority}" data-direction="left"></i> Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}" data-direction="right"></i></p>
+                <div class="markCompleted">
+                <p>Mark Completed</p>
                 <button class="completeBtn" data-id=${task.id}> Mark Completed</button>
+                </div>
             </div>`);
     } else if (task.priority === 'Low') {
         $('#lowPriorityDiv').append(`
@@ -73,13 +77,16 @@ function renderTasks(res) {
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>${task.priority}</p>
-                <p>Time Completed: ${task.time}</p>
+                <h5>Time Completed: <br>${task.time}</h5>
             </div>`);
             }
         }
         counter = $('.taskBox').length;
-        $('#taskCount').empty()
+        completedCount = $('.completedTask').length;
+        $('#completeCount').empty();
+        $('#taskCount').empty();
         $('#taskCount').append(counter)
+        $('#completeCount').append(completedCount);
      }
 
 
@@ -169,10 +176,10 @@ function changePriority() {
 
 function displayComplete() {
     $('#taskContainer').hide();
-    $('#completedTasks').show()
+    $('#completedCont').show()
 }
 
 function displayTasks() {
-    $('#completedTasks').hide();
+    $('#completedCont').hide();
     $('#taskContainer').show()
 }

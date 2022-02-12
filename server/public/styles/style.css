@@ -11,6 +11,7 @@ body, html {
     background-color: #E7E8D1;
     margin: 0;
     padding: 0 20px 0 20px;
+    box-shadow: 0 5px 5px grey;
 }
 
 #taskContainer {
@@ -37,11 +38,20 @@ header {
     width: 300px;
     margin: 10px;
     padding: 10px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     align-self: baseline;
     flex-grow: 0;
-    box-shadow: 0 0 5px rgb(198, 198, 198);
+    /* box-shadow: 0 0 5px rgb(198, 198, 198); */
+    /* background-color: rgb(237, 236, 220); */
+}
+
+.dontDelete {
     background-color: rgb(237, 236, 220);
+    box-shadow: 0 2px 5px rgb(198, 198, 198);
+    border-radius: 10px;
+    margin: 0;
+    padding: 10px;
+    font-style: italic;
 }
 
 .priorityDiv h2 {
@@ -73,27 +83,28 @@ header {
     background-color: #E7E8D1;
 }
 
-/* #mediumPriorityDiv {
-    background-color: #FFBE7BFF;
-}
-
-#lowPriorityDiv {
-    background-color: #EED971FF;
-} */
-
 #completedSection {
     display: flex;
-    flex-flow: row-wrap;
-    border: 2px solid black;
+    flex-flow: row wrap;
+    justify-content: center;
     padding: 10px;
     margin: 10px;
 }
 
 .completedTask {
-    
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid rgba(109, 109, 109, 0.413);
+    border-radius: 15px;
+    box-shadow: 0 3px 5px rgb(109, 109, 109);
+    background-color: #A7BEAE;
 }
 
-#completedTasks {
+.completedTask h3, h5, p {
+   margin: 0;
+}
+
+#completedCont {
     text-align: center;
 }
 
@@ -110,6 +121,12 @@ header {
 
 .fa-xmark:hover {
     cursor: pointer;
+}
+
+.markCompleted {
+    background-color: rgb(204, 213, 201);
+    overflow: hidden;
+    border-radius: 15px;
 }
 
 
