@@ -66,5 +66,44 @@ router.delete('/', (req, res) => {
     })
 })
 
+router.put('/priority/:id', (req, res) => {
+    let id = req.params.id;
+    let currentPriority = req.body.priority;
+    let direction = req.body.direction;
+    if (currentPriority === 'High') {
+        sqlTxt = `
+        UPDATE "tasks"
+        SET "priority" = 'Medium'
+        WHERE "id" = $1;
+        `
+    } else if (currentPriority === 'Low') {
+        sqlTxt = `
+        UPDATE "tasks"
+        SET "priority" = "Medium"
+        WHERE "id" = $1;
+        `
+    }else if (currentPriority === 'Medium' && direction === 'right') {
+        sqlTxt = `
+        UPDATE "tasks"
+        SET "priority" = "Low"
+        WHERE "id" = $1;
+        `
+    }else if (currentPriority === "Medium" && direction === 'left') {
+        sqlTx = `
+        UPDATE "tasks"
+        SET "priority" = "High"
+        WHERE "id" = $1;
+        `
+    } else {
+        res.sendStatus(400);
+    }
+    pool.query(sqlTxt, [id])
+    .then(result => {
+        res.sendStatus(200);
+    }).catch(err => {
+        res.sendStatus(500);
+    })
+})
+
 
 module.exports = router;
