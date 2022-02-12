@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,48 +12,57 @@
     <script src="scripts/client.js" charset="UTF-8"></script>
     <title>Task Master Pro</title>
 </head>
+
 <body>
     <div id="wrapper">
         <header>
-            <h1>Task Master Pro</h1>  
+            <h1>Task Master Pro</h1>
         </header>
         <main>
             <section id="topBar">
-            <div id="inputContainer">
-                <input type="text" id="taskIn" class="inputs" placeholder="Task To Add">
-                <input type="text" id="notesIn" class="inputs" placeholder="Notes">
-                <select name="priority" id="prioritySel" class="inputs">
-                    <option value="" selected disabled hidden>Priority</option>
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Lowest</option>
-                </select>
-                <button id="submitBtn">Add Task</button>
-            </div>
-            <h3>Total Tasks: <span id="taskCount"></span></h3>
-            <div id="toggleTabs">
-                <button id="tabTasks">Show Tasks</button>
-                <button id="tabComplete">Show Completed</button>
-            </div>
-        </section>
-            <section id="outputs">
-                
-                <div id="taskContainer">
-                        
-                    <div id="highPriorityDiv" class="priorityDiv"><h2 class="dontDelete">High Priority</h2></div>
-                    <div id="mediumPriorityDiv" class="priorityDiv"><h2 class="dontDelete">Medium Priority</h2></div>
-                    <div id="lowPriorityDiv" class="priorityDiv"><h2 class="dontDelete">Low Priority</h2></div>
-                  
+                <div id="inputContainer">
+                    <input type="text" id="taskIn" class="inputs" placeholder="Task To Add">
+                    <input type="text" id="notesIn" class="inputs" placeholder="Notes">
+                    <select name="priority" id="prioritySel" class="inputs">
+                        <option value="" selected disabled hidden>Priority</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Lowest</option>
+                    </select>
+                    <button id="submitBtn">Add Task</button>
                 </div>
-                    
+                <h3>Total Tasks: <span id="taskCount"></span></h3>
+                <div id="toggleTabs">
+                    <button id="tabTasks">Show Tasks</button>
+                    <button id="tabComplete">Show Completed</button>
+                </div>
+            </section>
+            <section id="outputs">
+
+                <div id="taskContainer">
+
+                    <div id="highPriorityDiv" class="priorityDiv">
+                        <h2 class="dontDelete">High Priority</h2>
+                    </div>
+                    <div id="mediumPriorityDiv" class="priorityDiv">
+                        <h2 class="dontDelete">Medium Priority</h2>
+                    </div>
+                    <div id="lowPriorityDiv" class="priorityDiv">
+                        <h2 class="dontDelete">Low Priority</h2>
+                    </div>
+
+                </div>
+
             </section>
             <section id="completedTasks">
-                <h2>Completed</h2>
+                <h2>Completed Tasks</h2>
                 <button id="deleteComplete">Delete All Completed</button>
-            <div id="completedSection">
-            </div>
-            </section>  
+                <div id="completedSection">
+                
+                </div>
+            </section>
         </main>
     </div>
 </body>
+
 </html>
