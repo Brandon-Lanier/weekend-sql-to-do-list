@@ -9,6 +9,19 @@ body, html {
     justify-content: space-around;
 }
 
+#inputContainer {
+    text-align:center;
+    margin: 20px;
+    padding: 10px;
+}
+
+header {
+    text-align: center;
+    background-color:rgb(252, 165, 89);
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
 .priorityDiv {
     width: 300px;
     margin: 10px;

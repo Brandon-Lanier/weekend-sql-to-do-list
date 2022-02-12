@@ -29,6 +29,7 @@ function getTasks() {
 function renderTasks(res) {
     // $('#taskCount').empty();
     $('.priorityDiv').empty();
+    // $('.priorityDiv').empty();
     $('#completedSection').empty();
     console.log(res);
     for (let task of res) {
@@ -39,7 +40,6 @@ function renderTasks(res) {
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>${task.priority}</p>
-                <i class="fa-solid fa-arrow-right"></i>
                 <button class="completeBtn" data-id=${task.id}>Mark Completed</button>
                 <button class="deleteBtn" data-id=${task.id}>Delete Task</button>
             </div>`);
