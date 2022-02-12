@@ -5,12 +5,15 @@ let DateTime = luxon.DateTime;
 
 function onReady() {
     $('#submitBtn').on('click', taskSubmit);
-    $('#taskContainer').on('click', '.deleteBtn', deleteTask);
+    $('#taskContainer').on('click', '.fa-xmark', deleteTask);
     $('#taskContainer').on('click', '.completeBtn', markComplete);
-    $('#completedSection').on('click', '.deleteBtn', deleteTask);
+    $('#completedSection').on('click', '.fa-xmark', deleteTask);
     $('#deleteComplete').on('click', deleteHistory);
-    $('#taskContainer').on('click', '.changePrio', changePriority)
+    $('#taskContainer').on('click', '.changePrio', changePriority);
+    $('#tabComplete').on('click', displayComplete);
+    $('#tabTasks').on('click', displayTasks);
     getTasks();
+    $('#completedTasks').hide();
     
 }
 
@@ -38,39 +41,39 @@ function renderTasks(res) {
         if (task.priority === 'High') {
         $('#highPriorityDiv').append(`
             <div class="highTask taskBox" data-id=${task.id}>
+                <i class="fa-solid fa-xmark" data-id=${task.id}></i>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
-                <p>Priority<i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}"></i></p>
+                <p>Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}"></i></p>
                 <button class="completeBtn" data-id=${task.id}>Mark Completed</button>
-                <button class="deleteBtn" data-id=${task.id}>Delete Task</button>
             </div>`);
     } else if (task.priority === 'Medium') {
         $('#mediumPriorityDiv').append(`
             <div class="mediumTask taskBox" data-id=${task.id}>
+                <i class="fa-solid fa-xmark" data-id=${task.id}></i>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p><i class="fa-solid fa-arrow-left changePrio" data-priority="${task.priority}" data-direction="left"></i> Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}" data-direction="right"></i></p>
                 <button class="completeBtn" data-id=${task.id}> Mark Completed</button>
-                <button class="deleteBtn" data-id=${task.id}>Delete Task</button>
             </div>`);
     } else if (task.priority === 'Low') {
         $('#lowPriorityDiv').append(`
             <div class="lowTask taskBox" data-id=${task.id}>
+                <i class="fa-solid fa-xmark" data-id=${task.id}></i>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p><i class="fa-solid fa-arrow-left changePrio" data-priority="${task.priority}"></i> Priority</p>
                 <button class="completeBtn" data-id=${task.id}>Mark Completed</button>
-                <button class="deleteBtn" data-id=${task.id}>Delete Task</button>
             </div>`);
         }
     } else {
             $('#completedSection').append(`
             <div class="completedTask" data-id=${task.id}>
+                <i class="fa-solid fa-xmark" data-id=${task.id}></i>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>${task.priority}</p>
                 <p>Time Completed: ${task.time}</p>
-                <button class="deleteBtn" data-id=${task.id}>Remove Task</button>
             </div>`);
             }
         }
@@ -162,4 +165,14 @@ function changePriority() {
    }).catch(error => {
        console.log('Error changing priority', error);   
    })    
+}
+
+function displayComplete() {
+    $('#taskContainer').hide();
+    $('#completedTasks').show()
+}
+
+function displayTasks() {
+    $('#completedTasks').hide();
+    $('#taskContainer').show()
 }
