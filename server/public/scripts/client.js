@@ -7,7 +7,8 @@ function onReady() {
     $('#submitBtn').on('click', taskSubmit);
     $('#taskContainer').on('click', '.deleteBtn', deleteTask);
     $('#taskContainer').on('click', '.completeBtn', markComplete);
-    $('#completedSection').on('click', '.deleteBtn', deleteTask)
+    $('#completedSection').on('click', '.deleteBtn', deleteTask);
+    $('#deleteHistoy').on('click', deleteHistory)
     getTasks();
     
 }
@@ -67,7 +68,7 @@ function renderTasks(res) {
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>${task.priority}</p>
-                <p>${task.time}</p>
+                <p>Time Completed: ${task.time}</p>
                 <button class="deleteBtn" data-id=${task.id}>Delete</button>
             </div>`);
             }
@@ -114,13 +115,15 @@ function deleteTask() {
 
 function markComplete() {
     let taskId = $(this).data().id;
+    let time = DateTime.now().toLocaleString(DateTime.DATETIME_SHORT)
+    console.log(time);
     console.log(taskId);
     $.ajax({
         method: 'PUT',
         url: `/tasks/${taskId}`,
-        data: time
+        data: {time: time}
     }).then(response => {
-        getTasks()
+        getTasks();
     }).catch(error => {
         console.log('Failed to mark as complete');
     });
