@@ -45,9 +45,9 @@ router.delete('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
     let taskId = req.params.id;
-    // let time = req.body
+    let time = req.body.time
     console.log(time);
-    let queryText = `UPDATE "tasks" SET "completed" = TRUE, SET "time" = $1 WHERE "id" = $2;`;
+    let queryText = `UPDATE "tasks" SET "completed" = TRUE, "time" = $1 WHERE "id" = $2;`;
     pool.query(queryText, [time, taskId])
     .then(result => {
         res.sendStatus(200);
