@@ -131,6 +131,7 @@ header {
 
 .markCompleted:hover {
     cursor: pointer;
+    box-shadow: 0 0 3px white;
 }
 
 
@@ -147,7 +148,7 @@ header {
     color: rgb(0, 0, 0);
     margin: 5px;
     align-self: center;
-    background-color: rgb(240, 209, 151);
+    background-color: rgba(233, 151, 126, 0.434);
 }
 
 .change-prio-cont-med {
@@ -157,7 +158,7 @@ header {
     color: rgb(0, 0, 0);
     margin: 5px;
     align-self: center;
-    background-color: rgb(240, 209, 151);
+    background-color: rgba(235, 225, 168, 0.529);
 }
 
 .change-prio-cont-low {
@@ -167,7 +168,7 @@ header {
     color: rgb(0, 0, 0);
     margin: 5px;
     align-self: center;
-    background-color: rgb(240, 209, 151);
+    background-color: rgba(240, 209, 151, 0.482);
 }
 
 .fa-arrow-left:hover {
@@ -176,6 +177,24 @@ header {
 
 .fa-arrow-right:hover {
     cursor: pointer;
+}
+
+.change-prio:hover {
+    box-shadow: 0 0 3px white;
+}
+
+.change-prio {
+    width: 100px;
+    margin: 2px auto;
+}
+
+#submitBtn {
+    margin: 5px;
+}
+
+#progressBar {
+    margin: 0 auto;
+    margin-top:20px;
 }
 
 

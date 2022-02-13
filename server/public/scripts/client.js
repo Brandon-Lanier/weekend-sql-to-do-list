@@ -108,7 +108,7 @@ function taskSubmit() {
         newTask.task = $('#taskIn').val(),
         newTask.notes = $('#notesIn').val(),
         newTask.priority = $('#prioritySel').val();
-        if(newTask.task, newTask.notes, newTask.priority) {
+        if(newTask.task, newTask.priority) {
         addTask(newTask);
         }else {
             alert('Please enter all inputs')
@@ -130,7 +130,6 @@ function addTask(taskIn) {
 }
 
 function deleteTask() {
-
     if (confirm('Confirm Delete')) {
         let taskId = $(this).data().id;
         console.log(taskId);
