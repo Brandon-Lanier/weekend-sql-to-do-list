@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="vendors/luxon.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="scripts/client.js" charset="UTF-8"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/style.css">
@@ -26,7 +27,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                      <h5 class="modal-title" id="exampleModalLongTitle">Confirm Deletion</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -35,8 +36,8 @@
                       ...
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Delete</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-primary" id="confirm">Delete</button>
                     </div>
                   </div>
                 </div>
@@ -44,7 +45,7 @@
             <section id="topBar">
                 <div id="inputContainer">
                     <input type="text" id="taskIn" class="inputs" placeholder="Task To Add">
-                    <input type="text" id="notesIn" class="inputs" placeholder="Notes">
+                    <input type="text" id="notesIn" class="inputs" placeholder="Notes (Optional)">
                     <select name="priority" id="prioritySel" class="inputs input-group-text">
                         <option value="" selected disabled hidden>Priority</option>
                         <option value="High" class="custom-select">High</option>
@@ -59,24 +60,17 @@
                 <div id="completedCounter">
                     <h4>You have <span id="completeCount"></span> completed tasks</h4>
                 </div>
-                <!-- <div id="toggleTabs"> -->
-                    <!-- <div class="togglers"> -->
-                        <!-- <button id="tabTasks">Show Tasks</button> -->
-                        <!-- <h3>Show Tasks</h3> -->
-                    <!-- </div> -->
-                    <!-- <div class="togglers"> -->
-                        <!-- <button id="tabComplete">Show Completed</button> -->
-                        <!-- <h3>Show Completed</h3> -->
-                    <!-- </div> -->
-                    
 
             </section>
             <div id="toggleContainer">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-secondary" id="tabTasks">Show Active</button>
-                <button type="button" class="btn btn-secondary" id="tabComplete">Show Completed</button>
+                <button type="button" class="btn btn-secondary active" id="tabTasks">Show Active</button>
+                <button type="button" class="btn btn-secondary active" id="tabComplete">Show Completed</button>
               </div>
             </div>
+            <!-- <div id="progressBar" class="progress" style="width: 50%">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+              </div> -->
             <section id="outputs">
 
                 <div id="taskContainer">
@@ -92,14 +86,15 @@
                     </div>
 
                 </div>
-
+                
             </section>
             <section id="completedCont">
                 <h2>Completed Tasks</h2>
-                <button id="deleteComplete">Delete All Completed</button>
+                <button id="deleteComplete" class="btn-danger">Delete All Completed</button>
                 <div id="completedSection">
                 
                 </div>
+               
             </section>
         </main>
     </div>

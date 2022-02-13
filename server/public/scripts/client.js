@@ -6,16 +6,15 @@ let DateTime = luxon.DateTime;
 
 function onReady() {
     $('#submitBtn').on('click', taskSubmit);
-    $('#taskContainer').on('click', '.fa-xmark', deleteTask);
+    $('#taskContainer').on('click', '.close', deleteTask);
     $('#taskContainer').on('click', '.markCompleted', markComplete);
-    $('#completedSection').on('click', '.fa-xmark', deleteTask);
+    $('#completedSection').on('click', '.close', deleteTask);
     $('#deleteComplete').on('click', deleteHistory);
-    // $('#taskContainer').on('hover', showOptions);
     $('#taskContainer').on('click', '.changePrio', changePriority);
     $('#tabComplete').on('click', displayComplete);
     $('#tabTasks').on('click', displayTasks);
-    getTasks();
     $('#completedCont').hide();
+    getTasks();
     
 }
 
@@ -42,23 +41,27 @@ function renderTasks(res) {
     for (let task of res) {
     if (task.completed === false) {
         if (task.priority === 'High') {
-        $('#highPriorityDiv').append(`
+            $('#highPriorityDiv').append(`
             <div class="highTask taskBox" data-id=${task.id}>
-                <i class="fa-solid fa-xmark" data-id=${task.id}></i>
+                <button type="button" class="close" aria-label="Close" data-id=${task.id} data-target="confirmDeletion"><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
-                <p>${task.notes}<p>
-                <p>Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}"></i></p>
+                <p>${task.notes}</p>
+                <div class="change-prio change-prio-cont-high">
+                <p>Priority <i class="fa-solid fa-arrow-right changePrio" data-id=${task.id} data-priority="${task.priority}"></i></p>
+                </div>
                 <div class="markCompleted" data-id=${task.id}>
                 <p>Mark Completed</p>
                 </div>
-            </div>`);
+                </div>`);
     } else if (task.priority === 'Medium') {
         $('#mediumPriorityDiv').append(`
             <div class="mediumTask taskBox" data-id=${task.id}>
-                <i class="fa-solid fa-xmark" data-id=${task.id}></i>
+                <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
-                <p>${task.notes}<p>
-                <p><i class="fa-solid fa-arrow-left changePrio" data-priority="${task.priority}" data-direction="left"></i> Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}" data-direction="right"></i></p>
+                <p>${task.notes}</p>
+                <div class="change-prio change-prio-cont-med">
+                <p><i class="fa-solid fa-arrow-left changePrio" data-id=${task.id} data-priority="${task.priority}" data-direction="left"></i> Priority <i class="fa-solid fa-arrow-right changePrio" data-id=${task.id} data-priority="${task.priority}" data-direction="right"></i></p>
+                </div>
                 <div class="markCompleted medMark" data-id=${task.id}>
                 <p>Mark Completed</p>
                 </div>
@@ -66,10 +69,12 @@ function renderTasks(res) {
     } else if (task.priority === 'Low') {
         $('#lowPriorityDiv').append(`
             <div class="lowTask taskBox" data-id=${task.id}>
-                <i class="fa-solid fa-xmark" data-id=${task.id}></i>
+                <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
-                <p><i class="fa-solid fa-arrow-left changePrio" data-priority="${task.priority}"></i> Priority</p>
+                <div class="change-prio change-prio-cont-low">
+                <p><i class="fa-solid fa-arrow-left changePrio" data-id=${task.id} data-priority="${task.priority}"></i> Priority</p>
+                </div>
                 <div class="markCompleted lowMark" data-id=${task.id}>
                 <p>Mark Completed</p>
                 </div>
@@ -78,7 +83,7 @@ function renderTasks(res) {
     } else {
             $('#completedSection').append(`
             <div class="completedTask" data-id=${task.id}>
-                <i class="fa-solid fa-xmark" data-id=${task.id}></i>
+            <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>${task.priority}</p>
@@ -102,7 +107,7 @@ function taskSubmit() {
         newTask.task = $('#taskIn').val(),
         newTask.notes = $('#notesIn').val(),
         newTask.priority = $('#prioritySel').val();
-        if(newTask.task, newTask.notes, newTask.priority) {
+        if(newTask.task, newTask.priority) {
         addTask(newTask);
         }else {
             alert('Please enter all inputs')
@@ -123,19 +128,20 @@ function addTask(taskIn) {
     })
 }
 
-function deleteTask() {
-    if (confirm('Confirm Delete')) {
+function deleteTask(e) {
+        e.preventDefault();
         let taskId = $(this).data().id;
+        if (confirm('Please confirm deletion')) {
         $.ajax({
             type: 'DELETE',
             url: `/tasks/${taskId}`
-        }).then(response => {
+            }).then(response => {
             getTasks();
-        }).catch(error => {
-        console.log('Unable to delete task');
-    })  
-}
-}
+            }).catch(error => {
+            console.log('Unable to delete task');
+            })
+        }
+    }   
 
 function markComplete() {
     let taskId = $(this).data().id;
@@ -154,18 +160,20 @@ function markComplete() {
 }
 
 function deleteHistory() {
-    $.ajax({
-        method: 'DELETE',
-        url: '/tasks'
-    }).then(response => {
-        getTasks();
-    }).catch(error => {
-        console.log('Failed to mark as complete');
-    })
+    if(confirm('Delete All History?')) {
+        $.ajax({
+            method: 'DELETE',
+            url: '/tasks'
+        }).then(response => {
+            getTasks();
+        }).catch(error => {
+            console.log('Failed to mark as complete');
+        })
+    }
 }
 
 function changePriority() {
-    let id = $(this).closest('div').data().id;
+    let id = $(this).data().id;
     let priority = $(this).data().priority;
     let direction = $(this).data().direction;
     console.log(id, priority, direction);
@@ -185,15 +193,15 @@ function changePriority() {
 }
 
 function displayComplete() {
+    $('#tabComplete').addClass('disabled')
+    $('#tabTasks').removeClass('disabled')
     $('#taskContainer').hide();
     $('#completedCont').show()
 }
 
 function displayTasks() {
+    $('#tabTasks').addClass('disabled')
+    $('#tabComplete').removeClass('disabled')
     $('#completedCont').hide();
     $('#taskContainer').show()
 }
-
-// function showOptions() {
-//     $('.markCompleted').show()
-// }
