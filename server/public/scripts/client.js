@@ -7,9 +7,10 @@ let DateTime = luxon.DateTime;
 function onReady() {
     $('#submitBtn').on('click', taskSubmit);
     $('#taskContainer').on('click', '.fa-xmark', deleteTask);
-    $('#taskContainer').on('click', '.completeBtn', markComplete);
+    $('#taskContainer').on('click', '.markCompleted', markComplete);
     $('#completedSection').on('click', '.fa-xmark', deleteTask);
     $('#deleteComplete').on('click', deleteHistory);
+    // $('#taskContainer').on('hover', showOptions);
     $('#taskContainer').on('click', '.changePrio', changePriority);
     $('#tabComplete').on('click', displayComplete);
     $('#tabTasks').on('click', displayTasks);
@@ -35,6 +36,7 @@ function renderTasks(res) {
     // $('#taskCount').empty();
     $('.taskBox').not('.dontDelete').remove();
     // $('.priorityDiv').empty();
+    $('.markCompleted').hide();
     $('#completedSection').empty();
     console.log(res);
     for (let task of res) {
@@ -46,7 +48,9 @@ function renderTasks(res) {
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}"></i></p>
-                <button class="completeBtn" data-id=${task.id}>Mark Completed</button>
+                <div class="markCompleted" data-id=${task.id}>
+                <p>Mark Completed</p>
+                </div>
             </div>`);
     } else if (task.priority === 'Medium') {
         $('#mediumPriorityDiv').append(`
@@ -55,9 +59,8 @@ function renderTasks(res) {
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p><i class="fa-solid fa-arrow-left changePrio" data-priority="${task.priority}" data-direction="left"></i> Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}" data-direction="right"></i></p>
-                <div class="markCompleted">
+                <div class="markCompleted medMark" data-id=${task.id}>
                 <p>Mark Completed</p>
-                <button class="completeBtn" data-id=${task.id}> Mark Completed</button>
                 </div>
             </div>`);
     } else if (task.priority === 'Low') {
@@ -67,7 +70,9 @@ function renderTasks(res) {
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p><i class="fa-solid fa-arrow-left changePrio" data-priority="${task.priority}"></i> Priority</p>
-                <button class="completeBtn" data-id=${task.id}>Mark Completed</button>
+                <div class="markCompleted lowMark" data-id=${task.id}>
+                <p>Mark Completed</p>
+                </div>
             </div>`);
         }
     } else {
@@ -87,6 +92,7 @@ function renderTasks(res) {
         $('#taskCount').empty();
         $('#taskCount').append(counter)
         $('#completeCount').append(completedCount);
+        displayTasks()
      }
 
 
@@ -183,3 +189,7 @@ function displayTasks() {
     $('#completedCont').hide();
     $('#taskContainer').show()
 }
+
+// function showOptions() {
+//     $('.markCompleted').show()
+// }

@@ -10,8 +10,13 @@ body, html {
     margin: 10px;
     background-color: #E7E8D1;
     margin: 0;
-    padding: 0 20px 0 20px;
+    padding:10px;
     box-shadow: 0 5px 5px grey;
+}
+
+input {
+    border-radius: 5px;
+    border: 1px solid grey;
 }
 
 #taskContainer {
@@ -30,7 +35,7 @@ body, html {
 header {
     text-align: center;
     background-color:#A7BEAE;
-    padding: 10px;
+    padding: 10px 10px 2px 10px;
     margin-bottom: 0;
 }
 
@@ -46,7 +51,7 @@ header {
 }
 
 .dontDelete {
-    background-color: rgb(237, 236, 220);
+    background-color: rgb(215, 214, 199);
     box-shadow: 0 2px 5px rgb(198, 198, 198);
     border-radius: 10px;
     margin: 0;
@@ -116,7 +121,7 @@ header {
     float: right;
     display: inline-block;
     margin: 3px;
-    color:rgba(82, 82, 82, 0.509);
+    color:rgba(68, 68, 68, 0.701);
 }
 
 .fa-xmark:hover {
@@ -127,6 +132,28 @@ header {
     background-color: rgb(204, 213, 201);
     overflow: hidden;
     border-radius: 15px;
+    text-align: center;
+}
+
+.markCompleted:hover {
+    cursor: pointer;
+}
+
+.togglers {
+    background-color: #B85042;
+    margin: 0;
+    height: 100%;
+    color: white;
+}
+
+#toggleTabs {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#toggleContainer {
+    display: flex;
+    justify-content: center;;
 }
 
 

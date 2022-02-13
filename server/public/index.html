@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css">
     <script src="https://kit.fontawesome.com/46128ddc2f.js" crossorigin="anonymous"></script>
     <script src="vendors/jquery.js" charset="UTF-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="vendors/luxon.min.js"></script>
     <script src="scripts/client.js" charset="UTF-8"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/style.css">
     <title>Task Master Pro</title>
 </head>
 
@@ -19,6 +22,25 @@
             <h1>Task Master Pro</h1>
         </header>
         <main>
+            <div class="modal fade" id="confirmDeletion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Delete</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <section id="topBar">
                 <div id="inputContainer">
                     <input type="text" id="taskIn" class="inputs" placeholder="Task To Add">
@@ -29,14 +51,32 @@
                         <option value="Medium">Medium</option>
                         <option value="Low">Lowest</option>
                     </select>
-                    <button id="submitBtn">Add Task</button>
+                    <button id="submitBtn" class="btn btn-outline-secondary">Add Task</button>
                 </div>
-                <h3>Total Active Tasks: <span id="taskCount"></span><br><h3>Total Completed Task: <span id="completeCount"></span></h3></h3>
-                <div id="toggleTabs">
-                    <button id="tabTasks">Show Tasks</button>
-                    <button id="tabComplete">Show Completed</button>
+                <div id="activeCounter">
+                    <h4>You have <span id="taskCount"></span> active tasks</h4>
                 </div>
+                <div id="completedCounter">
+                    <h4>You have <span id="completeCount"></span> completed tasks</h4>
+                </div>
+                <!-- <div id="toggleTabs"> -->
+                    <!-- <div class="togglers"> -->
+                        <!-- <button id="tabTasks">Show Tasks</button> -->
+                        <!-- <h3>Show Tasks</h3> -->
+                    <!-- </div> -->
+                    <!-- <div class="togglers"> -->
+                        <!-- <button id="tabComplete">Show Completed</button> -->
+                        <!-- <h3>Show Completed</h3> -->
+                    <!-- </div> -->
+                    
+
             </section>
+            <div id="toggleContainer">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary" id="tabTasks">Show Active</button>
+                <button type="button" class="btn btn-secondary" id="tabComplete">Show Completed</button>
+              </div>
+            </div>
             <section id="outputs">
 
                 <div id="taskContainer">
