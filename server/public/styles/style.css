@@ -11,7 +11,8 @@ body, html {
     margin: 10px;
     background-color: #E7E8D1;
     margin: 0;
-    padding:10px;
+    padding: 10px;
+    padding-right: 30px;
     box-shadow: 0 5px 5px grey;
 }
 
