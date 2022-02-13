@@ -47,7 +47,9 @@ function renderTasks(res) {
             <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
+                <div class="change-prio-cont high-prio-cont">
                 <p>Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}"></i></p>
+                </div>
                 <div class="markCompleted" data-id=${task.id}>
                 <p>Mark Completed</p>
                 </div>

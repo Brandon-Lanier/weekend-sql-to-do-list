@@ -56,7 +56,6 @@ router.put('/:id', (req, res) => {
     })
 })
 
-
 router.delete('/', (req, res) => {
     let queryText = `DELETE FROM "tasks" WHERE "completed" = true;`;
     pool.query(queryText).then(function(response) {

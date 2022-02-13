@@ -1,6 +1,7 @@
 body, html {
     margin: 0;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+    /* font-family:Verdana, Geneva, Tahoma, sans-serif; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 #topBar {
@@ -58,7 +59,6 @@ header {
     border-radius: 10px;
     margin: 0;
     padding: 10px;
-    font-style: italic;
 }
 
 .priorityDiv h2 {
@@ -79,15 +79,15 @@ header {
 }
 
 .highTask {
-    background-color: #B85042;
+    background-color: #f2c095;
 }
 
 .mediumTask {
-    background-color: #A7BEAE;
+    background-color: #f9e8a7;
 }
 
 .lowTask {
-    background-color: #E7E8D1;
+    background-color: #e4e4de;
 }
 
 #completedSection {
@@ -119,43 +119,36 @@ header {
     margin: 5px;
 }
 
-/* .fa-xmark {
-    float: right;
-    display: inline-block;
-    margin: 3px;
-    color:rgba(68, 68, 68, 0.701);
-} */
-
-.fa-xmark:hover {
-    cursor: pointer;
-}
-
 .markCompleted {
-    background-color: rgb(204, 213, 201);
+    background-color: rgb(128, 154, 133);
     overflow: hidden;
     border-radius: 15px;
     text-align: center;
+    color: white;
 }
 
 .markCompleted:hover {
     cursor: pointer;
 }
 
-.togglers {
-    background-color: #B85042;
-    margin: 0;
-    height: 100%;
-    color: white;
-}
-
-#toggleTabs {
-    display: flex;
-    justify-content: flex-end;
-}
 
 #toggleContainer {
     display: flex;
     justify-content: center;;
+}
+
+.change-prio-cont {
+    overflow: hidden;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    margin: 5px;
+    align-self: center;
+    border: 1px solid rgb(205, 205, 205);
+}
+
+.high-prio-cont {
+    background-color: #f2b37c;
 }
 
 
