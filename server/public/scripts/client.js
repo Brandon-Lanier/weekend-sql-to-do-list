@@ -6,9 +6,9 @@ let DateTime = luxon.DateTime;
 
 function onReady() {
     $('#submitBtn').on('click', taskSubmit);
-    $('#taskContainer').on('click', '.fa-xmark', deleteTask);
+    $('#taskContainer').on('click', '.close', deleteTask);
     $('#taskContainer').on('click', '.markCompleted', markComplete);
-    $('#completedSection').on('click', '.fa-xmark', deleteTask);
+    $('#completedSection').on('click', '.close', deleteTask);
     $('#deleteComplete').on('click', deleteHistory);
     // $('#taskContainer').on('hover', showOptions);
     $('#taskContainer').on('click', '.changePrio', changePriority);
@@ -44,7 +44,7 @@ function renderTasks(res) {
         if (task.priority === 'High') {
         $('#highPriorityDiv').append(`
             <div class="highTask taskBox" data-id=${task.id}>
-                <i class="fa-solid fa-xmark" data-id=${task.id}></i>
+            <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}"></i></p>
@@ -55,7 +55,7 @@ function renderTasks(res) {
     } else if (task.priority === 'Medium') {
         $('#mediumPriorityDiv').append(`
             <div class="mediumTask taskBox" data-id=${task.id}>
-                <i class="fa-solid fa-xmark" data-id=${task.id}></i>
+                <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p><i class="fa-solid fa-arrow-left changePrio" data-priority="${task.priority}" data-direction="left"></i> Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}" data-direction="right"></i></p>
@@ -66,7 +66,7 @@ function renderTasks(res) {
     } else if (task.priority === 'Low') {
         $('#lowPriorityDiv').append(`
             <div class="lowTask taskBox" data-id=${task.id}>
-                <i class="fa-solid fa-xmark" data-id=${task.id}></i>
+                <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p><i class="fa-solid fa-arrow-left changePrio" data-priority="${task.priority}"></i> Priority</p>
@@ -78,7 +78,7 @@ function renderTasks(res) {
     } else {
             $('#completedSection').append(`
             <div class="completedTask" data-id=${task.id}>
-                <i class="fa-solid fa-xmark" data-id=${task.id}></i>
+            <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>${task.priority}</p>
@@ -126,6 +126,8 @@ function addTask(taskIn) {
 function deleteTask() {
     if (confirm('Confirm Delete')) {
         let taskId = $(this).data().id;
+        console.log(taskId);
+        
         $.ajax({
             type: 'DELETE',
             url: `/tasks/${taskId}`
