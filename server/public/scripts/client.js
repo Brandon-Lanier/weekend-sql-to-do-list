@@ -48,7 +48,7 @@ function renderTasks(res) {
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
                 <p>Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}"></i></p>
-                <div class="markCompleted highMark" data-id=${task.id}>
+                <div class="markCompleted" data-id=${task.id}>
                 <p>Mark Completed</p>
                 </div>
             </div>`);

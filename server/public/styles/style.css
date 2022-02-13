@@ -14,6 +14,10 @@ body, html {
     box-shadow: 0 5px 5px grey;
 }
 
+input {
+    border-radius: 5px;
+    border: 1px solid grey;
+}
 
 #taskContainer {
     display: flex;
@@ -145,6 +149,11 @@ header {
 #toggleTabs {
     display: flex;
     justify-content: flex-end;
+}
+
+#toggleContainer {
+    display: flex;
+    justify-content: center;;
 }
 
 
