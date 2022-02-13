@@ -36,7 +36,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Delete</button>
+                      <button type="button" class="btn btn-primary" id="willthiswork">Delete</button>
                     </div>
                   </div>
                 </div>
@@ -73,8 +73,8 @@
             </section>
             <div id="toggleContainer">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-secondary" id="tabTasks">Show Active</button>
-                <button type="button" class="btn btn-secondary" id="tabComplete">Show Completed</button>
+                <button type="button" class="btn btn-secondary active" id="tabTasks">Show Active</button>
+                <button type="button" class="btn btn-secondary active" id="tabComplete">Show Completed</button>
               </div>
             </div>
             <section id="outputs">
@@ -92,7 +92,7 @@
                     </div>
 
                 </div>
-
+                
             </section>
             <section id="completedCont">
                 <h2>Completed Tasks</h2>
@@ -100,6 +100,7 @@
                 <div id="completedSection">
                 
                 </div>
+               
             </section>
         </main>
     </div>

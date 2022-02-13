@@ -1,6 +1,6 @@
 body, html {
     margin: 0;
-    /* font-family:Verdana, Geneva, Tahoma, sans-serif; */
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -18,7 +18,8 @@ body, html {
 input {
     border-radius: 5px;
     border: 1px solid grey;
-}
+    margin: 2px;
+} 
 
 #taskContainer {
     display: flex;
@@ -59,6 +60,7 @@ header {
     border-radius: 10px;
     margin: 0;
     padding: 10px;
+    font-style: italic;
 }
 
 .priorityDiv h2 {
@@ -124,7 +126,7 @@ header {
     overflow: hidden;
     border-radius: 15px;
     text-align: center;
-    color: white;
+    color: rgb(235, 235, 235);
 }
 
 .markCompleted:hover {
@@ -134,22 +136,49 @@ header {
 
 #toggleContainer {
     display: flex;
-    justify-content: center;;
+    justify-content: center;
+    margin-top: 15px;
 }
 
-.change-prio-cont {
+.change-prio-cont-high {
     overflow: hidden;
     border-radius: 15px;
     text-align: center;
-    color: white;
+    color: rgb(0, 0, 0);
     margin: 5px;
     align-self: center;
-    border: 1px solid rgb(205, 205, 205);
+    background-color: rgb(240, 209, 151);
 }
 
-.high-prio-cont {
-    background-color: #f2b37c;
+.change-prio-cont-med {
+    overflow: hidden;
+    border-radius: 15px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    margin: 5px;
+    align-self: center;
+    background-color: rgb(240, 209, 151);
 }
+
+.change-prio-cont-low {
+    overflow: hidden;
+    border-radius: 15px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    margin: 5px;
+    align-self: center;
+    background-color: rgb(240, 209, 151);
+}
+
+.fa-arrow-left:hover {
+    cursor: pointer;
+}
+
+.fa-arrow-right:hover {
+    cursor: pointer;
+}
+
+
 
 
 

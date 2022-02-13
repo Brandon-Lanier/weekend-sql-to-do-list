@@ -42,25 +42,27 @@ function renderTasks(res) {
     for (let task of res) {
     if (task.completed === false) {
         if (task.priority === 'High') {
-        $('#highPriorityDiv').append(`
+            $('#highPriorityDiv').append(`
             <div class="highTask taskBox" data-id=${task.id}>
-            <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
-                <p>${task.notes}<p>
-                <div class="change-prio-cont high-prio-cont">
-                <p>Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}"></i></p>
+                <p>${task.notes}</p>
+                <div class="change-prio change-prio-cont-high">
+                <p>Priority <i class="fa-solid fa-arrow-right changePrio" data-id=${task.id} data-priority="${task.priority}"></i></p>
                 </div>
                 <div class="markCompleted" data-id=${task.id}>
                 <p>Mark Completed</p>
                 </div>
-            </div>`);
+                </div>`);
     } else if (task.priority === 'Medium') {
         $('#mediumPriorityDiv').append(`
             <div class="mediumTask taskBox" data-id=${task.id}>
                 <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
-                <p>${task.notes}<p>
-                <p><i class="fa-solid fa-arrow-left changePrio" data-priority="${task.priority}" data-direction="left"></i> Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}" data-direction="right"></i></p>
+                <p>${task.notes}</p>
+                <div class="change-prio change-prio-cont-med">
+                <p><i class="fa-solid fa-arrow-left changePrio" data-id=${task.id} data-priority="${task.priority}" data-direction="left"></i> Priority <i class="fa-solid fa-arrow-right changePrio" data-id=${task.id} data-priority="${task.priority}" data-direction="right"></i></p>
+                </div>
                 <div class="markCompleted medMark" data-id=${task.id}>
                 <p>Mark Completed</p>
                 </div>
@@ -71,7 +73,9 @@ function renderTasks(res) {
                 <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
                 <p>${task.notes}<p>
-                <p><i class="fa-solid fa-arrow-left changePrio" data-priority="${task.priority}"></i> Priority</p>
+                <div class="change-prio change-prio-cont-low">
+                <p><i class="fa-solid fa-arrow-left changePrio" data-id=${task.id} data-priority="${task.priority}"></i> Priority</p>
+                </div>
                 <div class="markCompleted lowMark" data-id=${task.id}>
                 <p>Mark Completed</p>
                 </div>
@@ -126,6 +130,7 @@ function addTask(taskIn) {
 }
 
 function deleteTask() {
+
     if (confirm('Confirm Delete')) {
         let taskId = $(this).data().id;
         console.log(taskId);
@@ -169,7 +174,7 @@ function deleteHistory() {
 }
 
 function changePriority() {
-    let id = $(this).closest('div').data().id;
+    let id = $(this).data().id;
     let priority = $(this).data().priority;
     let direction = $(this).data().direction;
     console.log(id, priority, direction);
@@ -189,11 +194,15 @@ function changePriority() {
 }
 
 function displayComplete() {
+    $('#tabComplete').addClass('disabled')
+    $('#tabTasks').removeClass('disabled')
     $('#taskContainer').hide();
     $('#completedCont').show()
 }
 
 function displayTasks() {
+    $('#tabTasks').addClass('disabled')
+    $('#tabComplete').removeClass('disabled')
     $('#completedCont').hide();
     $('#taskContainer').show()
 }
@@ -201,3 +210,8 @@ function displayTasks() {
 // function showOptions() {
 //     $('.markCompleted').show()
 // }
+
+/* <div class="change-prio-cont high-prio-cont">
+                <p>Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}"></i></p>
+                </div>
+                <div class="markCompleted" data-id=${task.id}></div> */
