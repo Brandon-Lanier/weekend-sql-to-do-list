@@ -102,7 +102,11 @@ function taskSubmit() {
         newTask.task = $('#taskIn').val(),
         newTask.notes = $('#notesIn').val(),
         newTask.priority = $('#prioritySel').val();
+        if(newTask.task, newTask.notes, newTask.priority) {
         addTask(newTask);
+        }else {
+            alert('Please enter all inputs')
+        }
         // $('.inputs').val('');
 }
 
