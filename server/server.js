@@ -11,6 +11,6 @@ app.use(express.static('server/public'));
 const taskRouter = require('./routes/tasks.js');
 app.use('/tasks', taskRouter);
 
-app.listen(PORT, () => {
-  console.log('listening on port', PORT);
-});
+app.listen(process.env.PORT || PORT, () => {
+  console.log('listening on port', PORT)
+})
