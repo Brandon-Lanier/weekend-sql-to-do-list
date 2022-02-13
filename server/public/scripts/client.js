@@ -158,14 +158,14 @@ function markComplete() {
 }
 
 function deleteHistory() {
-    if (confirm('Delete All History?')) {
+    if(confirm('Delete All History?')) {
         $.ajax({
             method: 'DELETE',
             url: '/tasks'
         }).then(response => {
             getTasks();
         }).catch(error => {
-            console.log('Failed to delete history');
+            console.log('Failed to mark as complete');
         })
     }
 }
@@ -210,8 +210,8 @@ function confirmDelete() {
     Swal.fire({
         title: 'Confirm Deletion Of Task',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#bd3030',
+        cancelButtonColor: '#bfbfbf',
         confirmButtonText: 'Delete'
     }).then((result) => {
     if (result.isConfirmed) {
