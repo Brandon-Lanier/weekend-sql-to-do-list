@@ -6,7 +6,7 @@ let DateTime = luxon.DateTime;
 
 function onReady() {
     $('#submitBtn').on('click', taskSubmit);
-    $('#taskContainer').on('click', '.close', deleteTask);
+    $('#taskContainer').on('click', '.close', confirmDelete);
     $('#taskContainer').on('click', '.markCompleted', markComplete);
     $('#completedSection').on('click', '.close', deleteTask);
     $('#deleteComplete').on('click', deleteHistory);
@@ -15,7 +15,6 @@ function onReady() {
     $('#tabTasks').on('click', displayTasks);
     $('#completedCont').hide();
     getTasks();
-    
 }
 
 function getTasks() {
@@ -27,7 +26,7 @@ function getTasks() {
         console.log('Got Tasks', response);
         renderTasks(response);
     }).catch(error => {
-        console.log('Error Getting Tasks', error);   
+        console.log('Error Getting Tasks', error);
     })
 }
 
@@ -39,9 +38,9 @@ function renderTasks(res) {
     $('#completedSection').empty();
     console.log(res);
     for (let task of res) {
-    if (task.completed === false) {
-        if (task.priority === 'High') {
-            $('#highPriorityDiv').append(`
+        if (task.completed === false) {
+            if (task.priority === 'High') {
+                $('#highPriorityDiv').append(`
             <div class="highTask taskBox" data-id=${task.id}>
                 <button type="button" class="close" aria-label="Close" data-id=${task.id} data-target="confirmDeletion"><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
@@ -53,8 +52,8 @@ function renderTasks(res) {
                 <p>Mark Completed</p>
                 </div>
                 </div>`);
-    } else if (task.priority === 'Medium') {
-        $('#mediumPriorityDiv').append(`
+            } else if (task.priority === 'Medium') {
+                $('#mediumPriorityDiv').append(`
             <div class="mediumTask taskBox" data-id=${task.id}>
                 <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
@@ -66,8 +65,8 @@ function renderTasks(res) {
                 <p>Mark Completed</p>
                 </div>
             </div>`);
-    } else if (task.priority === 'Low') {
-        $('#lowPriorityDiv').append(`
+            } else if (task.priority === 'Low') {
+                $('#lowPriorityDiv').append(`
             <div class="lowTask taskBox" data-id=${task.id}>
                 <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
@@ -79,8 +78,8 @@ function renderTasks(res) {
                 <p>Mark Completed</p>
                 </div>
             </div>`);
-        }
-    } else {
+            }
+        } else {
             $('#completedSection').append(`
             <div class="completedTask" data-id=${task.id}>
             <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
@@ -89,30 +88,30 @@ function renderTasks(res) {
                 <p>${task.priority}</p>
                 <h5>Time Completed: <br>${task.time}</h5>
             </div>`);
-            }
         }
-        counter = $('.taskBox').length;
-        completedCount = $('.completedTask').length;
-        $('#completeCount').empty();
-        $('#taskCount').empty();
-        $('#taskCount').append(counter)
-        $('#completeCount').append(completedCount);
-        displayTasks()
-     }
+    }
+    counter = $('.taskBox').length;
+    completedCount = $('.completedTask').length;
+    $('#completeCount').empty();
+    $('#taskCount').empty();
+    $('#taskCount').append(counter)
+    $('#completeCount').append(completedCount);
+    displayTasks()
+}
 
 
 
 function taskSubmit() {
     let newTask = {};
-        newTask.task = $('#taskIn').val(),
+    newTask.task = $('#taskIn').val(),
         newTask.notes = $('#notesIn').val(),
         newTask.priority = $('#prioritySel').val();
-        if(newTask.task, newTask.priority) {
+    if (newTask.task, newTask.priority) {
         addTask(newTask);
-        }else {
-            alert('Please enter all inputs')
-        }
-        // $('.inputs').val('');
+    } else {
+        alert('Please enter all inputs')
+    }
+    // $('.inputs').val('');
 }
 
 function addTask(taskIn) {
@@ -120,28 +119,25 @@ function addTask(taskIn) {
         method: 'POST',
         url: '/tasks',
         data: taskIn
-    }).then(function(response){
+    }).then(function (response) {
         getTasks();
-    }).catch(function(error) {
+    }).catch(function (error) {
         console.log('Error Adding Task', error);
         alert('Unable To Add Task')
     })
 }
 
-function deleteTask(e) {
-        e.preventDefault();
-        let taskId = $(this).data().id;
-        if (confirm('Please confirm deletion')) {
+function deleteTask(id) {
+    let taskId = id
         $.ajax({
             type: 'DELETE',
             url: `/tasks/${taskId}`
-            }).then(response => {
+        }).then(response => {
             getTasks();
-            }).catch(error => {
+        }).catch(error => {
             console.log('Unable to delete task');
-            })
-        }
-    }   
+        })
+}
 
 function markComplete() {
     let taskId = $(this).data().id;
@@ -151,7 +147,9 @@ function markComplete() {
     $.ajax({
         method: 'PUT',
         url: `/tasks/${taskId}`,
-        data: {time: time}
+        data: {
+            time: time
+        }
     }).then(response => {
         getTasks();
     }).catch(error => {
@@ -160,14 +158,14 @@ function markComplete() {
 }
 
 function deleteHistory() {
-    if(confirm('Delete All History?')) {
+    if (confirm('Delete All History?')) {
         $.ajax({
             method: 'DELETE',
             url: '/tasks'
         }).then(response => {
             getTasks();
         }).catch(error => {
-            console.log('Failed to mark as complete');
+            console.log('Failed to delete history');
         })
     }
 }
@@ -177,19 +175,19 @@ function changePriority() {
     let priority = $(this).data().priority;
     let direction = $(this).data().direction;
     console.log(id, priority, direction);
-    
-   $.ajax({
-       method: 'PUT',
-       url: `/tasks/priority/${id}`,
-       data: {
-           priority: priority,
-           direction: direction
+
+    $.ajax({
+        method: 'PUT',
+        url: `/tasks/priority/${id}`,
+        data: {
+            priority: priority,
+            direction: direction
         }
-   }).then(response => {
-       getTasks();
-   }).catch(error => {
-       console.log('Error changing priority', error);   
-   })    
+    }).then(response => {
+        getTasks();
+    }).catch(error => {
+        console.log('Error changing priority', error);
+    })
 }
 
 function displayComplete() {
@@ -204,4 +202,27 @@ function displayTasks() {
     $('#tabComplete').removeClass('disabled')
     $('#completedCont').hide();
     $('#taskContainer').show()
+}
+
+function confirmDelete() {
+    let id = $(this).data().id
+    console.log(id);
+    Swal.fire({
+        title: 'Confirm Deletion Of Task',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Delete'
+    }).then((result) => {
+    if (result.isConfirmed) {
+        deleteTask(id);
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Task Deleted',
+            showConfirmButton: false,
+            timer: 1000
+        })
+        }
+    })
 }
