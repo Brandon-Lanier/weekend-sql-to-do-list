@@ -10,12 +10,11 @@ function onReady() {
     $('#taskContainer').on('click', '.markCompleted', markComplete);
     $('#completedSection').on('click', '.close', deleteTask);
     $('#deleteComplete').on('click', deleteHistory);
-    // $('#taskContainer').on('hover', showOptions);
     $('#taskContainer').on('click', '.changePrio', changePriority);
     $('#tabComplete').on('click', displayComplete);
     $('#tabTasks').on('click', displayTasks);
-    getTasks();
     $('#completedCont').hide();
+    getTasks();
     
 }
 
@@ -44,7 +43,7 @@ function renderTasks(res) {
         if (task.priority === 'High') {
             $('#highPriorityDiv').append(`
             <div class="highTask taskBox" data-id=${task.id}>
-                <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" aria-label="Close" data-id=${task.id} data-target="confirmDeletion"><span aria-hidden="true">&times;</span></button>
                 <h3>${task.task}</h3>
                 <p>${task.notes}</p>
                 <div class="change-prio change-prio-cont-high">
@@ -129,21 +128,20 @@ function addTask(taskIn) {
     })
 }
 
-function deleteTask() {
-    if (confirm('Confirm Delete')) {
+function deleteTask(e) {
+        e.preventDefault();
         let taskId = $(this).data().id;
-        console.log(taskId);
-        
+        if (confirm('Please confirm deletion')) {
         $.ajax({
             type: 'DELETE',
             url: `/tasks/${taskId}`
-        }).then(response => {
+            }).then(response => {
             getTasks();
-        }).catch(error => {
-        console.log('Unable to delete task');
-    })  
-}
-}
+            }).catch(error => {
+            console.log('Unable to delete task');
+            })
+        }
+    }   
 
 function markComplete() {
     let taskId = $(this).data().id;
@@ -162,14 +160,16 @@ function markComplete() {
 }
 
 function deleteHistory() {
-    $.ajax({
-        method: 'DELETE',
-        url: '/tasks'
-    }).then(response => {
-        getTasks();
-    }).catch(error => {
-        console.log('Failed to mark as complete');
-    })
+    if(confirm('Delete All History?')) {
+        $.ajax({
+            method: 'DELETE',
+            url: '/tasks'
+        }).then(response => {
+            getTasks();
+        }).catch(error => {
+            console.log('Failed to mark as complete');
+        })
+    }
 }
 
 function changePriority() {
@@ -205,12 +205,3 @@ function displayTasks() {
     $('#completedCont').hide();
     $('#taskContainer').show()
 }
-
-// function showOptions() {
-//     $('.markCompleted').show()
-// }
-
-/* <div class="change-prio-cont high-prio-cont">
-                <p>Priority <i class="fa-solid fa-arrow-right changePrio" data-priority="${task.priority}"></i></p>
-                </div>
-                <div class="markCompleted" data-id=${task.id}></div> */
