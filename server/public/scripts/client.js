@@ -14,7 +14,7 @@ function onReady() {
     $('#tabComplete').on('click', displayComplete);
     $('#tabTasks').on('click', displayTasks);
     $('#completedCont').hide(); // Hide the completed section on load
-    $('#taskContainer').on('hover', '.taskBox', showOptions);
+    $('#taskContainer').on('click', '.taskBox', showOptions);
     getTasks();
 }
 
