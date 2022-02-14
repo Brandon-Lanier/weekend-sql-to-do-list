@@ -13,7 +13,7 @@ function onReady() {
     $('#taskContainer').on('click', '.changePrio', changePriority);
     $('#tabComplete').on('click', displayComplete);
     $('#tabTasks').on('click', displayTasks);
-    $('#completedCont').hide();
+    $('#completedCont').hide(); // Hide the completed section on load
     $('#taskContainer').on('click', '.taskBox', showOptions);
     getTasks();
 }
@@ -95,8 +95,8 @@ function renderTasks(res) {
     }
     counter = $('.taskBox').length; //Counts total task in the active section
     completedCount = $('.completedTask').length; //Counts total tasks in the completed section
-    $('#completeCount').empty();
-    $('#taskCount').empty();
+    $('#completeCount').empty(); //Clear the task box on completed before reload
+    $('#taskCount').empty();//clear the task box in active before reload
     $('#taskCount').append(counter); // Append active tasks count
     $('#completeCount').append(completedCount); // Append completed tasks countcount
     displayTasks(); // Run the render tasks function
