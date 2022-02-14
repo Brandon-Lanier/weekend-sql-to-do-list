@@ -4,13 +4,7 @@ const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
     let queryText = `
-    SELECT * FROM "tasks"
-    ORDER BY CASE 
-         WHEN priority = 'High' THEN 1
-         WHEN priority = 'Medium' THEN 2
-         WHEN priority = 'Low' THEN 3
-         END ASC;
-    `;
+    SELECT * FROM "tasks"`;
     pool.query(queryText).then(result => {
         res.send(result.rows);
     }).catch(error => {
