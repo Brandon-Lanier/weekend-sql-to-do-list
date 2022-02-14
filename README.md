@@ -14,9 +14,6 @@ Tasks can be deleted from the active list by clicking on the 'X' in the top righ
 ## Screen Shot
 
 ![alt text](https://github.com/Brandon-Lanier/weekend-sql-to-do-list/blob/master/server/public/screen-recording.gif?raw=true)
-
-
-
 ### Prerequisites
 
 - Internet Browser
