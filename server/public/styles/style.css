@@ -13,12 +13,12 @@ body, html {
     margin: 0;
     padding: 10px;
     padding-right: 30px;
-    box-shadow: 0 5px 5px grey;
+    box-shadow: 0 5px 5px #949494;
 }
 
 input {
-    border-radius: 5px;
-    border: 1px solid grey;
+    border-radius: 10px;
+    border: 1px solid #949494;
     margin: 2px;
 } 
 
@@ -46,25 +46,22 @@ header {
 
 .priorityDiv {
     width: 300px;
-    margin: 10px;
+    margin: 0;
     padding: 10px;
-    /* border-radius: 10px; */
     align-self: baseline;
     flex-grow: 0;
-    /* box-shadow: 0 0 5px rgb(198, 198, 198); */
-    /* background-color: rgb(237, 236, 220); */
 }
 
 .dontDelete {
-    background-color: rgb(215, 214, 199);
-    box-shadow: 0 2px 5px rgb(198, 198, 198);
+    background-color: #d7d6c7;
+    box-shadow: 0 2px 5px #7b7b7b;
     border-radius: 10px;
     margin: 0;
     padding: 10px;
     font-style: italic;
 }
 
-.priorityDiv h2 {
+.priorityDiv h3 {
     margin: 1px;
     text-align: center;
 }
@@ -118,7 +115,7 @@ header {
     text-align: center;
 }
 
-.taskBox h3, p {
+.taskBox h4, p {
     margin: 5px;
 }
 
@@ -135,7 +132,6 @@ header {
     box-shadow: 0 0 3px white;
 }
 
-
 #toggleContainer {
     display: flex;
     justify-content: center;
@@ -149,7 +145,7 @@ header {
     color: rgb(0, 0, 0);
     margin: 5px;
     align-self: center;
-    background-color: rgba(233, 151, 126, 0.434);
+    background-color: rgb(186, 142, 129);
 }
 
 .change-prio-cont-med {
@@ -159,7 +155,7 @@ header {
     color: rgb(0, 0, 0);
     margin: 5px;
     align-self: center;
-    background-color: rgba(235, 225, 168, 0.529);
+    background-color: rgba(171, 164, 123, 0.529);
 }
 
 .change-prio-cont-low {
@@ -169,7 +165,7 @@ header {
     color: rgb(0, 0, 0);
     margin: 5px;
     align-self: center;
-    background-color: rgba(240, 209, 151, 0.482);
+    background-color: rgba(189, 183, 172, 0.482);
 }
 
 .fa-arrow-left:hover {
@@ -193,11 +189,11 @@ header {
     margin: 5px;
 }
 
-#progressBar {
-    margin: 0 auto;
-    margin-top:20px;
+#prioritySel {
+    background-color: #d8d8d8;
+    border-radius: 10px;
+    border: 1px solid #aeaeae;
 }
-
 
 
 

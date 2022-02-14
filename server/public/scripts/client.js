@@ -31,9 +31,7 @@ function getTasks() { // Refreshes task list on each call
 }
 
 function renderTasks(res) {
-    // $('#taskCount').empty();
     $('.taskBox').not('.dontDelete').remove();
-    // $('.priorityDiv').empty();
     $('.markCompleted').hide();
     $('#completedSection').empty();
     console.log(res);
@@ -43,7 +41,7 @@ function renderTasks(res) {
                 $('#highPriorityDiv').append(`
             <div class="highTask taskBox" data-id=${task.id}>
                     <button type="button" class="close" aria-label="Close" data-id=${task.id} data-target="confirmDeletion"><span aria-hidden="true">&times;</span></button>
-                    <h3>${task.task}</h3>
+                    <h4>${task.task}</h4>
                     <p>${task.notes}</p>
                 <div class="change-prio change-prio-cont-high">
                     <p>Priority <i class="fa-solid fa-arrow-right changePrio" data-id=${task.id} data-priority="${task.priority}"></i></p>
@@ -56,7 +54,7 @@ function renderTasks(res) {
                 $('#mediumPriorityDiv').append(`
             <div class="mediumTask taskBox" data-id=${task.id}>
                     <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
-                    <h3>${task.task}</h3>
+                    <h4>${task.task}</h4>
                     <p>${task.notes}</p>
                 <div class="change-prio change-prio-cont-med">
                     <p><i class="fa-solid fa-arrow-left changePrio" data-id=${task.id} data-priority="${task.priority}" data-direction="left"></i> Priority <i class="fa-solid fa-arrow-right changePrio" data-id=${task.id} data-priority="${task.priority}" data-direction="right"></i></p>
@@ -69,7 +67,7 @@ function renderTasks(res) {
                 $('#lowPriorityDiv').append(`
             <div class="lowTask taskBox" data-id=${task.id}>
                     <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
-                    <h3>${task.task}</h3>
+                    <h4>${task.task}</h4>
                     <p>${task.notes}<p>
                 <div class="change-prio change-prio-cont-low">
                     <p><i class="fa-solid fa-arrow-left changePrio" data-id=${task.id} data-priority="${task.priority}"></i> Priority</p>
@@ -106,7 +104,7 @@ function taskSubmit() {
         newTask.task = $('#taskIn').val(),
         newTask.notes = $('#notesIn').val(),
         newTask.priority = $('#prioritySel').val();
-    if (newTask.task, newTask.priority) { // Requires task and priority be entered
+    if (newTask.task && newTask.priority) { // Requires task and priority be entered
         addTask(newTask); // Pass object into the ajax POST request function
     } else {
         alert('Please enter all inputs'); // Alert to enter required inputs.
@@ -140,18 +138,16 @@ function deleteTask(id) {
 }
 
 function markComplete() {
-    let taskId = $(this).data().id;
-    let time = DateTime.now().toLocaleString(DateTime.DATETIME_SHORT)
-    console.log(time);
-    console.log(taskId);
+    let taskId = $(this).data().id; // Grab data id of task you are updating
+    let time = DateTime.now().toLocaleString(DateTime.DATETIME_SHORT); // Captures time of completion
     $.ajax({
         method: 'PUT',
-        url: `/tasks/${taskId}`,
+        url: `/tasks/${taskId}`, // Pass database ID into the url params
         data: {
-            time: time
+            time: time // Pass time completed into server to be stored in database
         }
     }).then(response => {
-        getTasks();
+        getTasks(); // get updated task list
     }).catch(error => {
         console.log('Failed to mark as complete');
     });
@@ -172,7 +168,7 @@ function deleteHistoryConfirm() {
             icon: 'error',
             title: 'All Tasks Deleted',
             showConfirmButton: false,
-            timer: 2000
+            timer: 1500
             });
         }
     });
@@ -207,14 +203,14 @@ function changePriority() {
     })
 }
 
-function displayComplete() {
-    $('#tabComplete').addClass('disabled');
+function displayComplete() { // Toggles between the active and completed tasks
+    $('#tabComplete').addClass('disabled'); // 
     $('#tabTasks').removeClass('disabled');
     $('#taskContainer').hide();
     $('#completedCont').show();
 }
 
-function displayTasks() {
+function displayTasks() { // Toggles between the active and completed tasks
     $('#tabTasks').addClass('disabled');
     $('#tabComplete').removeClass('disabled');
     $('#completedCont').hide();
@@ -237,7 +233,7 @@ function confirmDelete() {
             icon: 'error',
             title: 'Task Deleted',
             showConfirmButton: false,
-            timer: 2000
+            timer: 1500
             });
         }
     });

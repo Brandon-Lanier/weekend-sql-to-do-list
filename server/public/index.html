@@ -23,25 +23,6 @@
             <h1>Task Master Pro</h1>
         </header>
         <main>
-            <div class="modal fade" id="confirmDeletion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Confirm Deletion</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      ...
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                      <button type="button" class="btn btn-primary" id="confirm">Delete</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
             <section id="topBar">
                 <div id="inputContainer">
                     <input type="text" id="taskIn" class="inputs" placeholder="Task To Add">
@@ -52,7 +33,7 @@
                         <option value="Medium" class="custom-select">Medium</option>
                         <option value="Low" class="custom-select">Lowest</option>
                     </select>
-                    <button id="submitBtn" class="btn btn-outline-secondary">Add Task</button>
+                    <button id="submitBtn" class="btn btn-secondary">Add Task</button>
                 </div>
                 <div id="activeCounter">
                     <h4>You have <span id="taskCount"></span> active tasks</h4>
@@ -68,21 +49,18 @@
                 <button type="button" class="btn btn-secondary active" id="tabComplete">Show Completed</button>
               </div>
             </div>
-            <!-- <div id="progressBar" class="progress" style="width: 50%">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
-              </div> -->
             <section id="outputs">
 
                 <div id="taskContainer">
 
                     <div id="highPriorityDiv" class="priorityDiv">
-                        <h2 class="dontDelete">High Priority</h2>
+                        <h3 class="dontDelete">High Priority</h3>
                     </div>
                     <div id="mediumPriorityDiv" class="priorityDiv">
-                        <h2 class="dontDelete">Medium Priority</h2>
+                        <h3 class="dontDelete">Medium Priority</h3>
                     </div>
                     <div id="lowPriorityDiv" class="priorityDiv">
-                        <h2 class="dontDelete">Low Priority</h2>
+                        <h3 class="dontDelete">Low Priority</h3>
                     </div>
 
                 </div>
