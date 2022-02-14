@@ -98,8 +98,7 @@ function renderTasks(res) {
     $('#completeCount').empty(); //Clear the task box on completed before reload
     $('#taskCount').empty();//clear the task box in active before reload
     $('#taskCount').append(counter); // Append active tasks count
-    $('#completeCount').append(completedCount); // Append completed tasks countcount
-    displayTasks(); // Run the render tasks function
+    $('#completeCount').append(completedCount); // Append completed tasks count
 }
 
 function taskSubmit() {
