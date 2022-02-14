@@ -8,12 +8,13 @@ function onReady() {
     $('#submitBtn').on('click', taskSubmit);
     $('#taskContainer').on('click', '.close', confirmDelete);
     $('#taskContainer').on('click', '.markCompleted', markComplete);
-    $('#completedSection').on('click', '.close', deleteTask);
+    $('#completedSection').on('click', '.close', confirmDelete);
     $('#deleteComplete').on('click', deleteHistoryConfirm);
     $('#taskContainer').on('click', '.changePrio', changePriority);
     $('#tabComplete').on('click', displayComplete);
     $('#tabTasks').on('click', displayTasks);
     $('#completedCont').hide();
+    $('#taskContainer').on('click', '.taskBox', showOptions);
     getTasks();
 }
 
@@ -32,9 +33,7 @@ function getTasks() { // Refreshes task list on each call
 
 function renderTasks(res) {
     $('.taskBox').not('.dontDelete').remove();
-    $('.markCompleted').hide();
     $('#completedSection').empty();
-    console.log(res);
     for (let task of res) {
         if (task.completed === false) { // Rendering all non completed tasks to one section
             if (task.priority === 'High') { //splits up task based on priority
@@ -43,11 +42,13 @@ function renderTasks(res) {
                     <button type="button" class="close" aria-label="Close" data-id=${task.id} data-target="confirmDeletion"><span aria-hidden="true">&times;</span></button>
                     <h4>${task.task}</h4>
                     <p>${task.notes}</p>
+                <div class="options">
                 <div class="change-prio change-prio-cont-high">
                     <p>Priority <i class="fa-solid fa-arrow-right changePrio" data-id=${task.id} data-priority="${task.priority}"></i></p>
                 </div>
                 <div class="markCompleted" data-id=${task.id}>
                     <p>Mark Completed</p>
+                </div>
                 </div>
             </div>`);
             } else if (task.priority === 'Medium') {
@@ -56,11 +57,13 @@ function renderTasks(res) {
                     <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                     <h4>${task.task}</h4>
                     <p>${task.notes}</p>
+                <div class="options">
                 <div class="change-prio change-prio-cont-med">
                     <p><i class="fa-solid fa-arrow-left changePrio" data-id=${task.id} data-priority="${task.priority}" data-direction="left"></i> Priority <i class="fa-solid fa-arrow-right changePrio" data-id=${task.id} data-priority="${task.priority}" data-direction="right"></i></p>
                 </div>
                 <div class="markCompleted medMark" data-id=${task.id}>
                     <p>Mark Completed</p>
+                </div>
                 </div>
             </div>`);
             } else if (task.priority === 'Low') {
@@ -69,11 +72,13 @@ function renderTasks(res) {
                     <button type="button" class="close" aria-label="Close" data-id=${task.id}><span aria-hidden="true">&times;</span></button>
                     <h4>${task.task}</h4>
                     <p>${task.notes}<p>
+                <div class="options">
                 <div class="change-prio change-prio-cont-low">
                     <p><i class="fa-solid fa-arrow-left changePrio" data-id=${task.id} data-priority="${task.priority}"></i> Priority</p>
                 </div>
                 <div class="markCompleted lowMark" data-id=${task.id}>
                     <p>Mark Completed</p>
+                </div>
                 </div>
             </div>`);
             }
@@ -86,7 +91,7 @@ function renderTasks(res) {
                 <p>${task.priority}</p>
                 <h5>Time Completed: <br>${task.time}</h5>
             </div>`);
-        } //
+        } 
     }
     counter = $('.taskBox').length; //Counts total task in the active section
     completedCount = $('.completedTask').length; //Counts total tasks in the completed section
@@ -166,7 +171,7 @@ function deleteHistoryConfirm() {
         deleteHistory(); // Will run the deleteHistory function if user hits confirm
         Swal.fire({
             position: 'center',
-            icon: 'error',
+            icon: 'success',
             title: 'All Tasks Deleted',
             showConfirmButton: false,
             timer: 1500
@@ -182,7 +187,7 @@ function deleteHistory() {
         }).then(response => {
             getTasks();
         }).catch(error => {
-            console.log('Failed to mark as complete');
+            console.log('Failed to delete.');
         })
     }
 
@@ -219,7 +224,7 @@ function displayTasks() { // Toggles between the active and completed tasks
 }
 
 function confirmDelete() {
-    let id = $(this).data().id // Grab id of task box asking to be deleted
+    let id = $(this).data().id; // Grab id of task box asking to be deleted
     Swal.fire({
         title: 'Confirm Deletion Of Task',
         showCancelButton: true,
@@ -231,7 +236,7 @@ function confirmDelete() {
         deleteTask(id); // pass id into the delete function if user clicks confirm
         Swal.fire({
             position: 'center',
-            icon: 'error',
+            icon: 'success',
             title: 'Task Deleted',
             showConfirmButton: false,
             timer: 1500
@@ -239,3 +244,7 @@ function confirmDelete() {
         }
     });
 }
+
+function showOptions() {
+    $(this).find('.options').slideToggle("slow");
+};
