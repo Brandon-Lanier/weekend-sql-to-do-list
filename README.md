@@ -8,7 +8,7 @@ _Duration: 2 Day Sprint_
 
 Task Master Pro is a handy to-do list that allows user to enter task and organize them by priority.  Each task will populate under is respective priority list and display the task at hand, as well as any notes left by the user.  The user has the ability to change the priority of the task if they so choose, and can also mark a task as completed.
 
-The top section will dynamically show how many tasks are currently active as well as show how many tasks have been set to completed.
+The top section will dynamically show how many tasks are currently active as well as show how many tasks have been set to completed.  Once a task has been completed, the task box will show the date and time that it was completed.
 
 Tasks can be deleted from the active list by clicking on the 'X' in the top right corner of each task box.  An alert will pop up to confirm that the user would like to delete the task prior to executing.  Users also have the ability to delete just one task in the completed section in the same way, or they can delete all completed tasks using the 'Delete All Completed" button.
 ## Screen Shot
