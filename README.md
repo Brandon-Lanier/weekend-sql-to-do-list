@@ -6,7 +6,7 @@
 
 _Duration: 2 Day Sprint_
 
-Task Master Pro is a handy to-do list that allows user to enter task and organize them by priority.  Each task will populate under is respective priority list and display the task at hand, as well as any notes left by the user.  The user has the ability to change the priority of the task if they so choose, and can also mark a task as completed.
+Task Master Pro is a handy to-do list that allows user to enter task and organize them by priority.  Each task will populate under is respective priority list and display the task at hand, as well as any notes left by the user.  The user has the ability to click on any task to change it's given priority, or to mark a task as completed.  
 
 The top section will dynamically show how many tasks are currently active as well as show how many tasks have been set to completed.  Once a task has been completed, the task box will show the date and time that it was completed.
 
@@ -33,9 +33,9 @@ Tasks can be deleted from the active list by clicking on the 'X' in the top righ
 
 1. Enter a task (required) ,note (option), and priority level (required).
 2. Press the Add Task button to have task added to list.
-3. If you wish to change the priority of the task, click on the arrows for which direction to go in the task box.
+3. If you wish to change the priority of the task, click on the task you wish to edit to display the change priority option.
 4. To delete a task, click on the "x" in the top right corner of the task box.
-5. To mark a task as completed, click on the "Mark Completed" button on the task box.
+5. To mark a task as completed, click on the task, then select the "Mark Completed" button in the task box.
 6. You can toggle between active task and completed task by using the buttons under the toolbar.
 7. To delete all completed tasks, click on the "Delete All Completed" button in the completed tasks section.
 
@@ -57,7 +57,7 @@ Thanks to everyone in the Adam's Cohort for your continued support during our th
 
 Thanks to my Wife, Allison, for being my UX tester.
 
-Thanks to SweetAlert for the confirmation delete modal.
+Thanks to SweetAlert for the confirmation modal.
 
 ## Support
 If you have suggestions or issues, please feel free to contact me at [Brandonjlanier@gmail.com](mailto:brandonjlanier@gmail.com)

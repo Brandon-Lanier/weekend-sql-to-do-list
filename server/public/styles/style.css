@@ -26,7 +26,11 @@ input {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
+}
+
+#taskContainer:hover {
+    cursor: pointer;
 }
 
 #inputContainer {
@@ -195,5 +199,16 @@ header {
     border: 1px solid #aeaeae;
 }
 
+.options {
+    display: none;
+}
+
+#clickNotice {
+    font-style: italic;
+    color: #949494;
+    text-align: center;
+    padding: 5px 0 0 0;;
+    margin: 10px 0 0 0;
+}
 
 
