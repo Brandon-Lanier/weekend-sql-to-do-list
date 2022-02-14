@@ -97,8 +97,6 @@ function renderTasks(res) {
     displayTasks(); // Run the render tasks function
 }
 
-
-
 function taskSubmit() {
     let newTask = {}; //Store the values in an object
         newTask.task = $('#taskIn').val(),
@@ -106,10 +104,13 @@ function taskSubmit() {
         newTask.priority = $('#prioritySel').val();
     if (newTask.task && newTask.priority) { // Requires task and priority be entered
         addTask(newTask); // Pass object into the ajax POST request function
-    } else {
-        alert('Please enter all inputs'); // Alert to enter required inputs.
+    } else if (newTask.task === '' && newTask.priority === null) { //If task and priority isn't entered, trigger alert to enter both.
+        Swal.fire('Please enter a task and priority');
+    } else if(newTask.task && newTask.priority === null) { // If task is entered but no priority, alert user
+        Swal.fire('Please enter a priority');
+    } else if (newTask.task === '' && newTask.priority) { // if priority is selected but no task is entered, alert user.
+        Swal.fire('Please enter a task');
     }
-    // $('.inputs').val('');
 }
 
 function addTask(taskIn) {
